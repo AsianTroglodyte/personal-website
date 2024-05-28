@@ -1,0 +1,34 @@
+---
+import type { boolean } from 'astro/zod';
+
+interface Props {
+    text:string;
+    href:string;
+    style:"primary" | "secondary";
+    icon?: {
+        name: string;
+        side: "left" | "right";
+    };
+    isFilled?: boolean;
+    borderVisible?: boolean;
+    classes?: string;
+}
+
+const {
+    text,
+    href,
+    icon,
+    isFilled = true,
+    borderVisible = false,
+    classes,
+    ...rest
+} = Astro.props as Props;
+
+---
+
+<a href="href"
+    class:list={[
+        " "
+    ]}>
+
+</a>

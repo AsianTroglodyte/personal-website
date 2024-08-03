@@ -1,0 +1,23 @@
+---
+interface Props  {
+    articleDatum: {    
+        id: number,
+        title: string,
+        description: string,
+        src: string,
+        alt: string,
+    }
+};
+
+const {id, title, description, src, alt} = Astro.props.articleDatum;
+---
+
+<article class="grid grid-rows-[minmax(_13rem,_13rem)_minmax(_9rem,_9rem)] grid-cols-[minmax(_16rem,_22rem)] rounded-t-md shadow-md">
+    <img class="object-cover w-full h-full rounded-t-md" src={src} alt={alt}>
+    <div class="w-full h-full p-4 font-notoSerif bg-white">
+        <h6 class="text-md font-bold">{title}</h6>
+        <p class="text-sm overflow overflow-hidden" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient:vertical;">
+            {description}
+        </p>
+    </div>
+</article>

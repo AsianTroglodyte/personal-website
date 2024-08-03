@@ -1,0 +1,151 @@
+---
+import Header from "../components/Header.astro";
+import BaseHead from"../components/BaseHead.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import Carousel from "../components/Carousel.jsx";
+
+
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+let cavup_vals = [ "85", "95", "105", "115", "125", "135", "145", "155", "165", "175"];
+let cavdown_vals = ["45", "55", "65", "75", "85", "95", "105", "115", "125"];
+const CarouselData = [{id: 0, title: "Title 1", description: "description 1", src: "src/assets/article-placeholders/snowy-jap-wp.jpg", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 1, title: "Title 2", description: "description 1", src: "src/assets/article-placeholders/shintaro-kago-1.jpg", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 2, title: "Title 3", description: "description 1", src: "src/assets/article-placeholders/memes-wp-1.jpg", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 3, title: "Title 4:  How long should titles and descriptions really be? That is the question that this article will answer", description: "Description 4: How long should titles and descriptions be? neither should too long. Titles should take a maximum of two lines and \
+                    descriptions should take a maximum of three in any case both should be successfully truncated with an ellipses when they are too long", src: "src/assets/article-placeholders/rin-phone-wp.png", 
+                    alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 4, title: "Title 5", description: "description 1", src: "src/assets/article-placeholders/shintaro-kago-2.jpg", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 5, title: "Title 6", description: "description 1", src: "src/assets/article-placeholders/japanese-city.jpg", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}];
+
+const articleData = [{id: 0, title: "Title 0", description: "description 0", src: "src/assets/article-placeholders/shrimpson-boys.png", alt: ""},
+                    {id: 1, title: "Title 1", description: "description 1", src: "src/assets/article-placeholders/kon.jpg", alt: ""},
+                    {id: 2, title: "Title 2", description: "description 2", src: "src/assets/article-placeholders/power-1.jpg", alt: ""},
+                    {id: 3, title: "Title 3", description: "description 3", src: "src/assets/article-placeholders/city.jpg", alt: ""}
+                ];
+---
+
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Header isLandingPage={false} BGColor="PWWhite" color='PWBlack'></Header>
+        <main class="bg-PWWhite">
+            <!-- Title and search bar -->
+            <div class="flex flex-col items-center justify-center">
+                <h1 class="font-notoSerifDisplay text-7xl font-black text-PWBlack">Karan Swansi's Blog</h1>
+                
+                <!-- Featured -->
+                <h2 class="font-notoSerifDisplay text-6xl font-black mt-10 text-PWBlack">Featured</h2>
+                <!-- grid item cannot be smaller than the size of its content (auto) by default. 
+                    same applies to flex along the main axis. Interesting stackoverflow threads on this:
+                    https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
+                    https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
+                -->
+                
+                <Carousel CarouselData={CarouselData} client:load/>
+                
+
+                <!-- articles -->
+                <h2 class="font-notoSerifDisplay text-6xl font-black mt-10 text-PWBlack">Everything Else</h2>
+                <p class="font-notoSerif text-xl font-medium mt-10 text-PWBlack">Looking For Something?</p>
+                <!-- search bar -->
+                <div class="mt-3 self-center">
+                    <input class="shadow appearance-non border rounded self-center text-PWBlack"> 
+                        
+                    </input>
+                </div>
+                <!-- articles area -->
+                <!-- <section class="grid grid-cols-[minmax(_16rem,_22rem)_minmax(_16rem,_22rem)_minmax(_16rem,_22rem)] mt-10 gap-5 width-full mx-4">
+                    <article class="grid grid-rows-[minmax(_13rem,_13rem)_minmax(_9rem,_9rem)] grid-cols-[minmax(_16rem,_22rem)] rounded-t-md shadow-md">
+                        <img class="object-cover w-full h-full rounded-t-md" src="src/assets/article-placeholders/shrimpson-boys.png" alt="bruh">
+                        <div class="w-full h-full p-4 font-notoSerif bg-white">
+                            <h6 class="text-md font-bold">Title 1</h6>
+                            <p class="text-sm overflow overflow-hidden" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient:vertical;">Description 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut molestie faucibus euismod. Aenean ut arcu urna. Cras feugiat neque nec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut molestie faucibus euismod. Aenean ut arcu urna. Cras feugiat neque nec </p>
+                        </div>
+                    </article>
+                    <article class="grid grid-rows-[minmax(_13rem,_13rem)_minmax(_9rem,_9rem)] grid-cols-[minmax(_16rem,_22rem)] rounded-t-md shadow-md">
+                        <img class="object-cover w-full h-full rounded-t-md" src="src/assets/article-placeholders/kon.jpg" alt="bruh">
+                        <div class="w-full h-full p-2 font-notoSerif bg-white">
+                            <h6 class="text-md font-bold">Title 1</h6>
+                            <p class="text-sm">Description 1</p>
+                        </div>
+                    </article>
+                    <article class="grid grid-rows-[minmax(_13rem,_13rem)_minmax(_9rem,_9rem)] grid-cols-[minmax(_16rem,_22rem)] rounded-t-md shadow-md">
+                        <img class="object-cover w-full h-full rounded-t-md" src="src/assets/article-placeholders/power-1.jpg" alt="bruh">
+                        <div class="flex w-full h-full p-2 font-notoSerif bg-white gap-3">
+                            <h6 class="text-md font-bold">Title 1</h6>
+                            <p class="text-sm">Description 1</p>
+                        </div>
+                    </article>
+                    <article class="grid grid-rows-[minmax(_13rem,_13rem)_minmax(_9rem,_9rem)] grid-cols-[minmax(_16rem,_22rem)] rounded-t-md shadow-md">
+                        <img class="object-cover w-full h-full rounded-t-md" src="src/assets/article-placeholders/city.jpg" alt="bruh">
+                        <div class="w-full h-full p-2 font-notoSerif bg-white">
+                            <h6 class="text-md font-bold">Title 1</h6>
+                            <p class="text-sm">Description 1</p>
+                        </div>
+                    </article>
+                </section> -->
+
+                <section class="grid grid-cols-[minmax(_16rem,_22rem)_minmax(_16rem,_22rem)_minmax(_16rem,_22rem)] mt-10 gap-5 width-full mx-4">
+                    {articleData.map((articleDatum) => 
+                        <ArticleCard articleDatum={articleDatum} />
+                    )}
+                </section>
+
+
+
+
+            <!-- NOTE No library necessary for rudimentary animations-->
+            <!-- for animations vs transitions: kirupa css3 animations vs transitions-->
+            <svg class="w-full h-64 bg-PWBlack mt-12">
+                {
+                    cavup_vals.map(num => 
+                        <path 
+                            class="fill-none"
+                            stroke="white"
+                            stroke-width="2px"
+                            d={"M 25 " + num + " Q 137.5 " + (Number(num) + 30).toString() + ", 250 " + num}
+                            >
+                        </path>
+                    )
+                }
+                {
+                    cavdown_vals.map(num => 
+                        <path 
+                            class="fill-none"
+                            stroke="white"
+                            stroke-width="2px"
+                            d={"M 25 " + num + " Q 137.5 " + (Number(num) - 30).toString() + ", 250 " + num}
+                            >
+                            <animateMotion path={"M 0 0 " + " V 100 "  + " Z"} 
+                                            dur="10s"
+                                            repeatCount="indefinite">
+                            </animateMotion>
+                        </path>
+                    )
+                }
+            </svg>
+        </main>
+    </body>
+</html>
+
+
+<style>
+    .line {
+        height: 1rem;
+        background-color: black;
+        border-radius: 50%/100px 100px 0 0 ;
+    }
+    .upward_lines {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        gap: 1rem;
+    }
+</style>

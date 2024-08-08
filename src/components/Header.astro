@@ -15,13 +15,16 @@ const {
 	BGColor= "bruh",
     ...rest
 } = Astro.props as Props;
-const justifyContent = isLandingPage ? "justify-content: end;": "justify-content: space-between;";
 
+// when in landing page, absolute positioning conveniently prevents scroll bar. 
+// in any other page it is beneficial that it part of the normal flow of the document.
+const conditionalNavClasses = isLandingPage ? " " : " grid grid-cols-3 ";
+const conditionalHeaderClasses = isLandingPage ? " absolute right-0 " : "";
 ---
 
-<header class={ "text-" + color + " bg-" + BGColor + " h-12 "}>
+<header class={ "text-" + color + " bg-" + BGColor + " h-12" + conditionalHeaderClasses}>
 	<!-- is there a way to do this without inline styling? -->
-	<nav style={justifyContent} class="h-full w-full grid grid-cols-3">
+	<nav class={"h-full w-full" + conditionalNavClasses} >
 		{!isLandingPage && 
 			<div class={"pt-1 px-1 " + "bg-" + BGColor}>
 				{/* try making clip-path a class in the future */}

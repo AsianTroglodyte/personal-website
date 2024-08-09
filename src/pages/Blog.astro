@@ -10,11 +10,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 let cavup_vals = [ "85", "95", "105", "115", "125", "135", "145", "155", "165", "175"];
 let cavdown_vals = ["45", "55", "65", "75", "85", "95", "105", "115", "125"];
 
-const articleData = [{id: 0, title: "Title 0", description: "description 0", src: "src/assets/article-placeholders/shrimpson-boys.png", alt: ""},
-                    {id: 1, title: "Title 1", description: "This description is for ensuring that content is properly truncated when content would otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to the user that content has been cut off", src: "src/assets/article-placeholders/kon.jpg", alt: ""},
-                    {id: 2, title: "Title 2", description: "description 2", src: "src/assets/article-placeholders/power-1.jpg", alt: ""},
-                    {id: 3, title: "Title 3", description: "description 3", src: "src/assets/article-placeholders/city.jpg", alt: ""},
-                ];
+const articleData = [{id: 0, title: "Is it still worth it to learn to code.", description: "description 0", src: "src/assets/article-placeholders/shrimpson-boys.png", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 1, title: "Title 1", description: "This description is for ensuring that content is properly truncated when content would \
+                    otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to \
+                    the user that content has been cut off", src: "src/assets/article-placeholders/kon.jpg", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 2, title: "Title 2", description: "This description is for ensuring that content is properly truncated when content would \
+                    otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to \
+                    the user that content has been cut off", src: "src/assets/article-placeholders/power-1.jpg", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 3, title: "Title 3", description: "description 4", src: "src/assets/article-placeholders/CSM-3-rooms.jpg", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 4, title: "Title 4", description: "description 5", src: "src/assets/article-placeholders/Cytus-wallpaper v2.png", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 5, title: "Title 5", description: "This description is for ensuring that content is properly truncated when content would \
+                    otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to \
+                    the user that content has been cut off", src: "src/assets/article-placeholders/lisa-wp-edit.jpg", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 6, title: "Title 6", description: "description 7", src: "src/assets/article-placeholders/rin-phone-wp.png", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+                    {id: 6, title: "Title 6", description: "description 8", src: "src/assets/article-placeholders/kita-bocchi-phone-wp-2.png", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}];
 ---
 
 <html>
@@ -55,7 +64,12 @@ const articleData = [{id: 0, title: "Title 0", description: "description 0", src
                 </div>
 
 
-                <section class="grid grid-cols-[repeat(3,_minmax(_200px,_1fr))] mt-10 gap-5 width-full mx-4">
+                <!-- article area -->
+                <section class="mt-10 gap-5 width-full mx-4 grid
+                                grid-cols-[repeat(_1,_minmax(_18rem,_30rem))]
+                                lg:grid-cols-[repeat(_4,_minmax(_18rem,_30rem))]
+                                md:grid-cols-[repeat(_3,_minmax(_18rem,_30rem))]
+                                sm:grid-cols-[repeat(_2,_minmax(_18rem,_30rem))]">
                     {articleData.map((articleDatum) => 
                         <ArticleCard articleDatum={articleDatum} />
                     )}

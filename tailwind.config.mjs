@@ -47,6 +47,12 @@ export default {
 					"0%": {transform: "translateX(0%)"},
 					"100%": {transform: "translateX(calc(-50% - 5.5px))"}
 				}
+			},
+			screens: {
+				"xs": "",
+				"sm": "650px",
+				"md": "1020px",
+				"lg": "1500px",
 			}
 		},
 	},

@@ -28,7 +28,7 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
             <div className="flex flex-col justify-between bg-white h-full w-full p-4 font-notoSerif">
                 <div className="flex flex-col gap-3 overflow-hidden">
                     {/* advanced-truncation is for truncating and putting ellipses on overflowing text content */}
-                    <h6 className="text-base font-bold max-h-12 overflow-hidden advanced-truncation-4">
+                    <h6 className="text-base font-bold max-h-12 overflow-hidden advanced-truncation-2">
                         {carouselDatum.title}
                     </h6>
                     <p className="text-sm max-h-20 overflow-hidden advanced-truncation-4">

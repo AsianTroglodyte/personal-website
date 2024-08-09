@@ -1,4 +1,6 @@
 ---
+import Tag from "./Tag.jsx";
+
 interface Props  {
     articleDatum: {    
         id: number,
@@ -6,30 +8,48 @@ interface Props  {
         description: string,
         src: string,
         alt: string,
+        tags: {id: number, tagName: string}[]
     }
 };
 
-const {id, title, description, src, alt} = Astro.props.articleDatum;
+const {id, title, description, src, alt, tags} = Astro.props.articleDatum;
 ---
 
-<!-- <article class="grid grid-rows-[minmax(_13rem,_13rem)_minmax(_9rem,_9rem)] grid-cols-[minmax(_16rem,_22rem)] 
-                rounded-t-md shadow-md aspect-[22/22]">
-    <img class="object-cover w-full h-full rounded-t-md" src={src} alt={alt}>
-    <div class="w-full h-full p-4 font-notoSerif bg-white">
-        <h6 class="text-md font-bold">{title}</h6>
-        <p class="text-sm overflow overflow-hidden advanced-trunction-3" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient:vertical;">
-            {description}
-        </p>
+
+<!-- <article class="grid rounded-t-md shadow-md aspect-[15/20]">
+    <img class="object-cover w-full h-full rounded-t-md aspect-[15/12]" src={src} alt={alt}>
+    <div class="flex flex-col justify-between w-full h-full p-4 font-notoSerif bg-white aspect-[15/8]">
+        <div class="flex flex-col gap-3 overflow-hidden">
+            <h6 class="text-md font-bold">{title}</h6>
+            <p class="text-sm max-h-14 overflow-hidden advanced-truncation-3" >
+                {description}
+            </p>
+        </div>
+        <div class="flex flex-row gap-1">
+        {
+            tags.map((tagData) => 
+                <Tag tagData={tagData}/>
+            )
+        }
+        </div>
     </div>
 </article> -->
 
-
-<article class="grid grid() rounded-t-md shadow-md aspect-square">
-    <img class="object-cover w-full h-full rounded-t-md aspect-[2/1]" src={src} alt={alt}>
-    <div class="w-full h-full p-4 font-notoSerif bg-white aspect-[2/1]">
-        <h6 class="text-md font-bold">{title}</h6>
-        <p class="text-sm overflow overflow-hidden advanced-trunction-3" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient:vertical;">
-            {description}
-        </p>
+<article class="grid rounded-t-md p-1 aspect-[16/16]">
+    <img class="object-cover w-full h-full rounded-t-md aspect-[16/9]" src={src} alt={alt}>
+    <div class="flex flex-col justify-between w-full h-full py-2 font-notoSerif bg-PWWhite aspect-[16/7]">
+        <div class="flex flex-col gap-3 overflow-hidden">
+            <h6 class="text-md font-bold overflow-hidden advanced-truncation-1">{title}</h6>
+            <p class="text-sm max-h-14 overflow-hidden advanced-truncation-1" >
+                {description}
+            </p>
+        </div>
+        <div class="flex flex-row gap-1">
+        {
+            tags.map((tagData) => 
+                <Tag tagData={tagData}/>
+            )
+        }
+        </div>
     </div>
 </article>

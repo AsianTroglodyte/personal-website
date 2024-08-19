@@ -49,8 +49,8 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
                     https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
                     https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
                 -->
+                <!-- <Carousel client:only="react"/> -->
                 <Carousel client:load/>
-
 
                 <!-- articles -->
                 <h2 class="font-notoSerifDisplay text-6xl font-black mt-10 text-PWBlack">Everything Else</h2>
@@ -71,7 +71,7 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
                                 md:grid-cols-[repeat(_3,_minmax(_18rem,_30rem))]
                                 sm:grid-cols-[repeat(_2,_minmax(_18rem,_30rem))]">
                     {articleData.map((articleDatum) => 
-                        <ArticleCard articleDatum={articleDatum} />
+                        <ArticleCard articleDatum={articleDatum} client:visible/>
                     )}
                 </section>
 

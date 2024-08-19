@@ -1,9 +1,9 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+	The CSS in this style tag is based off of Bear Blog's default CSS.
+	https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
+	License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
 	
-	NOTE: GET RID OF OR CHANGE UP THE 
+	NOTE: GET RID OF OR CHANGE UP THE  
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
@@ -19,6 +19,24 @@
 	}
 
 	/* for cutting off content */
+	.advanced-truncation-7 {
+		display: -webkit-box;
+		-webkit-line-clamp: 7; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.advanced-truncation-6 {
+		display: -webkit-box;
+		-webkit-line-clamp: 6; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.advanced-truncation-5 {
+		display: -webkit-box;
+		-webkit-line-clamp: 5; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
 	.advanced-truncation-4 {
 		display: -webkit-box;
 		-webkit-line-clamp: 4; 
@@ -44,3 +62,51 @@
 		overflow: hidden;
 	}
 }
+
+/* The following if we would like to rely on container queries again  */
+/* .description-container {
+	container-type: size;
+	container-name: description-container;
+} */
+
+.title-text {
+	display: -webkit-box;
+	-webkit-line-clamp: 3; 
+	-webkit-box-orient: vertical;
+}
+
+
+/* @container description-container (3.75rem <= height < 5rem) {
+	.description-text {
+		display: -webkit-box;
+		-webkit-line-clamp: 3; 
+		-webkit-box-orient: vertical;
+		height: 3.75rem;
+		}
+}
+@container description-container (5rem <= height < 6.25rem) {
+	.description-text {
+		display: -webkit-box;
+		-webkit-line-clamp: 4; 
+		-webkit-box-orient: vertical;
+		height: 5rem;
+	}
+}
+
+@container description-container (6.25rem <= height < 7.5rem) {
+	.description-text {
+		display: -webkit-box;
+		-webkit-line-clamp: 5; 
+		-webkit-box-orient: vertical;
+		height: 6.25rem;
+	}
+}
+
+@container description-container (7.5rem <= height) {
+	.description-text {
+		display: -webkit-box;
+		-webkit-line-clamp: 6; 
+		-webkit-box-orient: vertical;
+		height: 7.5rem;
+	}
+} */

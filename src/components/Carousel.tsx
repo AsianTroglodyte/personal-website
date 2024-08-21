@@ -1,5 +1,5 @@
 import FeaturedArticleCard from "./FeaturedArticleCard.tsx";
-import {useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
+import {useCallback, useEffect, Suspense, useRef, useState, useLayoutEffect} from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
 
@@ -21,22 +21,18 @@ const Carousel = () => {
 
     // using center for the alignment is very weird as it reformatted on screen. align: start is used instead
     const [emblaRef, emblaApi] = useEmblaCarousel({loop: true, align: "center", dragFree: true});
-    const [doneLoading, setDoneLoading] = useState(false);
-    // console.log("emblaApi");
-    // console.log(                      carouselData.map((carouselDatum) =>
-    //     <FeaturedArticleCard key={carouselDatum.id} carouselDatum={carouselDatum}/>
-    // ));
-    // console.log(emblaApi?.slideNodes());
+    const [isLoading, setIsLoading] = useState(true);
 
 
     const tweenFactor = useRef(0);
     const tweenNodes = useRef<HTMLElement[]>([]);
     const TWEEN_FACTOR_BASE = 0.1;
+    // offset of 1 is required for carousel formatting. It is added later for calculations.
+    const CarouselMaxLength = ((carouselData.length - 1) * 20).toString() + "rem";
+
 
     const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
         tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-            // console.log("slide nodes:");
-            // console.log(slideNode.querySelector('.flex > div'));
             return slideNode.querySelector('.flex > div') as HTMLElement;
         })
     }, []);
@@ -89,10 +85,17 @@ const Carousel = () => {
     )
 
     
-
-    const changeDoneLoading = () => {
-        setDoneLoading(true);
+    const changeIsLoading = () => {
+        setIsLoading(false);
     }
+
+    const scrollPrev = useCallback(() => {
+        if (emblaApi) emblaApi.scrollPrev()
+    }, [emblaApi])
+
+    const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+    }, [emblaApi])
 
     useEffect(() => {
         if (!emblaApi) return
@@ -100,7 +103,6 @@ const Carousel = () => {
         setTweenNodes(emblaApi)
         setTweenFactor(emblaApi)
         tweenScale(emblaApi)
-        // tweenParallax(emblaApi)
         
         emblaApi
         .on('reInit', setTweenNodes)
@@ -108,33 +110,20 @@ const Carousel = () => {
         .on('reInit', tweenScale)
         .on('scroll', tweenScale)
         .on('slideFocus', tweenScale)
-        // .on('reInit', tweenParallax)
-        // .on('scroll', tweenParallax)
-        // .on('slideFocus', tweenParallax)
 
         // changing DoneLoading so that done
-        changeDoneLoading();
+        changeIsLoading();
 
     }, [emblaApi, tweenScale])
 
-
+    // Strongly consider using a suspense instead
     return (
-
-        doneLoading ? 
-        (<div className="embla overflow-hidden w-[58rem] h-[42rem]" ref={emblaRef}> 
-            <div className="flex mt-5 " >
-            {/* using center for the alignment is very weird as it reformatted on screen. align: start is used instead*/
-                    carouselData.map((carouselDatum) =>
-                        <FeaturedArticleCard key={carouselDatum.id} carouselDatum={carouselDatum}/>
-                    )
-                    }
-            </div>
-        </div>)
-        :
-        (
         <div>
-            <div className="embla overflow-hidden w-[56.5rem] h-[42rem] hidden" ref={emblaRef}> 
-                <div className="flex mt-5 *:mr-5" >
+            <div className={isLoading?
+            `overflow-hidden h-[42rem] w-full max-w-[${CarouselMaxLength}] hidden`:
+            `overflow-hidden h-[42rem] w-full max-w-[${CarouselMaxLength}]`} 
+            ref={emblaRef} style={{maxWidth: CarouselMaxLength}}> 
+                <div className="flex mt-5 " >
                 {/* using center for the alignment is very weird as it reformatted on screen. align: start is used instead*/
                         carouselData.map((carouselDatum) =>
                             <FeaturedArticleCard key={carouselDatum.id} carouselDatum={carouselDatum}/>
@@ -142,12 +131,188 @@ const Carousel = () => {
                         }
                 </div>
             </div>
-            <div className="h-[42rem] bg-gray-500">              
-                <div className="text-blue-600 text-xl relative top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] w-min">idk where </div>
-            </div>
+            <svg width="250" height="42rem" className={isLoading?
+            "": 
+            "hidden"}>
+                <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
+                </rect>
+                <rect x="50" y="291" width="45" height="90"  rx="5" ry="5">
+                </rect>
+                <rect x="100" y="286" width="50" height="100" rx="5" ry="5">
+                </rect>
+                <rect x="155" y="291" width="45" height="90" rx="5" ry="5">
+                </rect>
+                <rect x="205" y="296" width="40" height="80" rx="5" ry="5">
+                </rect>
+                <rect x="250" y="301" width="35" height="70" rx="5" ry="5">
+                </rect>
+            </svg>
         </div>
-        )
     )
 }
 
+
 export default Carousel;
+
+
+{
+    <svg width="250" height="42rem" >
+    <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
+        <animate 
+            attributeName="x"
+            values="5;-35"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="y"
+            values="296;301"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="width"
+            values="40;35"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="height"
+            values="80;70"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+    </rect>
+    <rect x="50" y="291" width="45" height="90"  rx="5" ry="5">
+        <animate 
+            attributeName="x"
+            values="50;5"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="y"
+            values="291;296"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="width"
+            values="45;40"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="height"
+            values="90;80"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+    </rect>
+    <rect x="100" y="286" width="50" height="100" rx="5" ry="5">
+        <animate 
+            attributeName="x"
+            values="100;50"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="y"
+            values="286;291"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="width"
+            values="50;45"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="height"
+            values="100;90"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+    </rect>
+    <rect x="155" y="291" width="45" height="90" rx="5" ry="5">
+        <animate 
+            attributeName="x"
+            values="155;100"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="y"
+            values="291;286"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="width"
+            values="45;50"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="height"
+            values="90;100"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+    </rect>
+    <rect x="205" y="296" width="40" height="80" rx="5" ry="5">
+        <animate 
+            attributeName="x"
+            values="205;155"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="y"
+            values="296;291"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="width"
+            values="40;45"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="height"
+            values="80;90"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+    </rect>
+    <rect x="250" y="301" width="35" height="70" rx="5" ry="5">
+        <animate 
+            attributeName="x"
+            values="250;205"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="y"
+            values="301;296"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="width"
+            values="35;40"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+        <animate 
+            attributeName="height"
+            values="70;80"
+            dur="0.1s"
+            repeatCount="indefinite"
+        />
+    </rect>
+
+</svg>
+}

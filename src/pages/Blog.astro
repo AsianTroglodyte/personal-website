@@ -72,7 +72,7 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
                                 md:grid-cols-[repeat(_3,_minmax(_18rem,_30rem))]
                                 sm:grid-cols-[repeat(_2,_minmax(_18rem,_30rem))]">
                     {articleData.map((articleDatum) => 
-                        <ArticleCard articleDatum={articleDatum} client:visible/>
+                        <ArticleCard articleDatum={articleDatum}/>
                     )}
                 </section>
 

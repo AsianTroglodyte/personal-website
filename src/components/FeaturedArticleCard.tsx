@@ -53,7 +53,7 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
 
     return (
     <>
-    <article className="flex justify-center content-center flex-[_0_0_10%] h-[36rem]
+    <article className="flex justify-center content-center h-[36rem]
         embla-slide-number">
         {/* Thumbnail. h & w need to be full as img is a container for the img. This makes object-cover work grid-cols-[minmax(_18rem,18rem)*/}
         {/* title description thingy. Max  */}
@@ -64,9 +64,11 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
                 <div className="flex flex-col grow gap-3 overflow-hidden">
                     {/* advanced-truncation is for truncating and putting ellipses on overflowing text content */}
                     <h6 className="title-text text-base font-bold max-h-[4.5rem] overflow-hidden advanced-trunction-3">
-                        {carouselDatum.title}
+                        <a className="after:absolute after:inset-0 focus:outline-none" href="/AboutMe">
+                            {carouselDatum.title}
+                        </a>
                     </h6> 
-                    <p className="description-text text-sm overflow-hidden grow" ref={descriptionTextRef}>
+                    <p className="text-sm overflow-hidden grow" ref={descriptionTextRef}>
                         {carouselDatum.description}
                     </p>
                 </div>
@@ -82,9 +84,6 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
                 </div>
             </div>
         </div>
-        {/* <style>
-        {css}
-        </style> */}
     </article>
     </>
     )

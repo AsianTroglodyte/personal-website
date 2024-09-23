@@ -25,6 +25,7 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
     // useEffect changes number of allowable lines using clamp based on size of container for description
     useEffect (() => {
         // null checking to satisfy TypeScript
+        console.log("useEffect ran: ", descriptionTextRef.current?.getBoundingClientRect().height);
         if (descriptionTextRef.current !== null && 
             descriptionTextRef.current.offsetHeight !== 0){            
             
@@ -64,16 +65,18 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
                 <div className="flex flex-col grow gap-3 overflow-hidden">
                     {/* advanced-truncation is for truncating and putting ellipses on overflowing text content */}
                     <h6 className="title-text text-base font-bold max-h-[4.5rem] overflow-hidden advanced-trunction-3">
-                        <a className="after:absolute after:inset-0 focus:outline-none" href="/AboutMe">
+                        <a className="font-notoSerif after:absolute after:inset-0 focus:outline-none" href="/AboutMe">
                             {carouselDatum.title}
                         </a>
                     </h6> 
-                    <p className="text-sm overflow-hidden grow" ref={descriptionTextRef}>
-                        {carouselDatum.description}
-                    </p>
+                    <div className="description-container overflow-hidden grow">
+                        <p className="description-text text-sm overflow-hidden" ref={descriptionTextRef}>
+                            {carouselDatum.description}
+                        </p>
+                    </div>
                 </div>
                 <div className="flex flex-col gap-3 pt-3">
-                    <div className="text-sm">Date: July 3, 2002</div>
+                    <div className="text-sm font-notoSerif">Date: July 3, 2002</div>
                     <div className="flex flex-row gap-1">
                         {
                             carouselDatum.tags.map((tagData) => 

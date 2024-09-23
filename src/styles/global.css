@@ -7,7 +7,7 @@
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind utilities;
 @tailwind base;
 @tailwind components;
@@ -18,95 +18,61 @@
 		clip-path: circle();
 	}
 
-	/* for cutting off content */
-	.advanced-truncation-7 {
-		display: -webkit-box;
-		-webkit-line-clamp: 7; 
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-	.advanced-truncation-6 {
-		display: -webkit-box;
-		-webkit-line-clamp: 6; 
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-	.advanced-truncation-5 {
-		display: -webkit-box;
-		-webkit-line-clamp: 5; 
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-	.advanced-truncation-4 {
-		display: -webkit-box;
-		-webkit-line-clamp: 4; 
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
+	/* for cutting off content may creat */
 	.advanced-truncation-3 {
 		display: -webkit-box;
 		-webkit-line-clamp: 3; 
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
-	.advanced-truncation-2 {
-		display: -webkit-box;
-		-webkit-line-clamp: 2; 
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-	.advanced-truncation-1 {
-		display: -webkit-box;
-		-webkit-line-clamp: 1; 
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
 }
-
-/* The following if we would like to rely on container queries again  */
-/* .description-container {
-	container-type: size;
-	container-name: description-container;
-} */
 
 .title-text {
 	display: -webkit-box;
 	-webkit-line-clamp: 3; 
 	-webkit-box-orient: vertical;
 }
-
-
-/* @container description-container (3.75rem <= height < 5rem) {
-	.description-text {
-		display: -webkit-box;
-		-webkit-line-clamp: 3; 
-		-webkit-box-orient: vertical;
-		height: 3.75rem;
-		}
+.line {
+	height: 1rem;
+	background-color: black;
+	border-radius: 50%/100px 100px 0 0 ;
 }
-@container description-container (5rem <= height < 6.25rem) {
-	.description-text {
-		display: -webkit-box;
-		-webkit-line-clamp: 4; 
-		-webkit-box-orient: vertical;
-		height: 5rem;
-	}
+.upward_lines {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	gap: 1rem;
 }
 
-@container description-container (6.25rem <= height < 7.5rem) {
-	.description-text {
-		display: -webkit-box;
-		-webkit-line-clamp: 5; 
-		-webkit-box-orient: vertical;
-		height: 6.25rem;
-	}
+/* property for height of element */
+@property --h {
+	syntax: '<length-percentage>';
+	initial-value: 0px;
+	inherits: true
 }
 
-@container description-container (7.5rem <= height) {
-	.description-text {
-		display: -webkit-box;
-		-webkit-line-clamp: 6; 
-		-webkit-box-orient: vertical;
-		height: 7.5rem;
-	}
+/* property for line height */
+@property --l {
+	syntax: '<length-percentage>';
+	initial-value: 0px;
+	inherits: true
+}
+
+/* .description_container:nth-child(1) { --h: 2.25rem }
+.description_container:nth-child(2) { --h: 5.75rem }
+.description_container:nth-child(3) { --h: 4.5rem } 
+.description_container:nth-child(4) { --h: 3.75rem } */
+
+
+/* .description-container {
+	--h: 100%;
+	--l: 1lh;
+	height: --h;
+}
+
+.description-text {
+	display: -webkit-box;
+	-webkit-line-clamp: round(down, tan(atan2(var(100%), var(--l))), 1); 
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 } */

@@ -32,6 +32,8 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
         <link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
@@ -40,22 +42,21 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
         <main class="bg-PWWhite">
             <!-- Title and search bar -->
             <div class="flex flex-col items-center justify-center">
-                <h1 class="font-notoSerifDisplay text-7xl font-black text-PWBlack">Karan Swansi's Blog</h1>
+                <h1 class="notoSerifDisplay text-7xl font-black text-PWBlack">Karan Swansi's Blog</h1>
                 
                 <!-- Featured -->
-                <h2 class="font-notoSerifDisplay text-6xl font-black mt-10 text-PWBlack">Featured</h2>
+                <h2 class="notoSerifDisplay text-6xl font-black mt-10 text-PWBlack">Featured</h2>
 
                 <!-- grid item cannot be smaller than the size of its content (auto) by default. 
                     same applies to flex along the main axis. Interesting stackoverflow threads on this:
                     https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
                     https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
                 -->
-                <!-- <Carousel client:only="react"/> -->
                 <Carousel client:load/>
 
                 <!-- articles -->
-                <h2 class="font-notoSerifDisplay text-6xl font-black mt-10 text-PWBlack">Everything Else</h2>
-                <p class="font-notoSerif text-xl font-medium mt-10 text-PWBlack">Looking For Something?</p>
+                <h2 class="notoSerifDisplay text-6xl font-black mt-10 text-PWBlack">Everything Else</h2>
+                <p class="notoSerif text-xl font-medium mt-10 text-PWBlack">Looking For Something?</p>
                 
                 <!-- search bar -->
                 <div class="mt-3 self-center">
@@ -66,7 +67,7 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
 
 
                 <!-- article area -->
-                <section class="mt-10 gap-5 width-full mx-4 grid
+                <section class="mt-10 gap-5 mx-4 grid
                                 grid-cols-[repeat(_1,_minmax(_18rem,_30rem))]
                                 lg:grid-cols-[repeat(_4,_minmax(_18rem,_30rem))]
                                 md:grid-cols-[repeat(_3,_minmax(_18rem,_30rem))]
@@ -78,8 +79,7 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
 
                 <!-- NOTE No library necessary for rudimentary animations-->
                 <!-- for animations vs transitions: kirupa css3 animations vs transitions-->
-                <svg class="w-full h-64 bg-PWBlack mt-12">
-                    <!-- articles area -->
+                <!-- <svg class="w-full h-64 bg-PWBlack mt-12">
                     {
                         cavup_vals.map(num => 
                             <path 
@@ -106,11 +106,12 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
                             </path>
                         )
                     }
-                </svg>
+                </svg> -->
             </div>
         </main>
     </body>
 </html>
+
 
 
 <style>
@@ -124,5 +125,11 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
         flex-direction: column;
         background-color: white;
         gap: 1rem;
+    }
+    .notoSerifDisplay {
+        font-family: "Noto Serif Display", serif;
+    }
+    .notoSerif {
+        font-family: "Noto Serif", serif;
     }
 </style>

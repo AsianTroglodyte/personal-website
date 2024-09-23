@@ -1,5 +1,5 @@
 import FeaturedArticleCard from "./FeaturedArticleCard.tsx";
-import {useCallback, useEffect, Suspense, useRef, useState, useLayoutEffect} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
 
@@ -23,6 +23,10 @@ const Carousel = () => {
     const [emblaRef, emblaApi] = useEmblaCarousel({loop: true, align: "center", dragFree: true});
     const [isLoading, setIsLoading] = useState(true);
 
+    const changeIsLoading = () => {
+        setIsLoading(false);
+    }
+
 
     const tweenFactor = useRef(0);
     const tweenNodes = useRef<HTMLElement[]>([]);
@@ -31,6 +35,7 @@ const Carousel = () => {
     const CarouselMaxLength = ((carouselData.length - 1) * 20).toString() + "rem";
 
 
+    // The following functiosn are for the embla Carousel: Black Magic. Try avoiding touching them.
     const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
         tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
             return slideNode.querySelector('.flex > div') as HTMLElement;
@@ -84,11 +89,6 @@ const Carousel = () => {
         []
     )
 
-    
-    const changeIsLoading = () => {
-        setIsLoading(false);
-    }
-
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()
     }, [emblaApi])
@@ -118,35 +118,43 @@ const Carousel = () => {
 
     // Strongly consider using a suspense instead
     return (
-        <div>
-            <div className={isLoading?
-            `overflow-hidden h-[42rem] w-full max-w-[${CarouselMaxLength}] hidden`:
-            `overflow-hidden h-[42rem] w-full max-w-[${CarouselMaxLength}]`} 
-            ref={emblaRef} style={{maxWidth: CarouselMaxLength}}> 
-                <div className="flex mt-5 " >
-                {/* using center for the alignment is very weird as it reformatted on screen. align: start is used instead*/
-                        carouselData.map((carouselDatum) =>
-                            <FeaturedArticleCard key={carouselDatum.id} carouselDatum={carouselDatum}/>
-                        )
-                        }
+        <div className="w-full" style={{maxWidth: CarouselMaxLength}}>
+            <div className={isLoading? "absolute invisible":""}>
+                <div className="overflow-hidden h-[42rem]" 
+                ref={emblaRef}> 
+                    <div className="flex mt-5" >
+                    {/* using center for the alignment is very weird as it reformatted on screen. align: start is used instead*/
+                            carouselData.map((carouselDatum) =>
+                                <FeaturedArticleCard key={carouselDatum.id} carouselDatum={carouselDatum}/>
+                            )
+                            }
+                    </div>
+                </div >
+                <div className="flex justify-center h-0">
+                    <button className="bg-white absolute" onClick={scrollPrev}>
+                        ScrollPrev
+                    </button>
+                    <button className="bg-white absolute" onClick={scrollNext}>
+                        ScrollNext
+                    </button>
                 </div>
             </div>
-            <svg width="250" height="42rem" className={isLoading?
-            "": 
-            "hidden"}>
-                <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
-                </rect>
-                <rect x="50" y="291" width="45" height="90"  rx="5" ry="5">
-                </rect>
-                <rect x="100" y="286" width="50" height="100" rx="5" ry="5">
-                </rect>
-                <rect x="155" y="291" width="45" height="90" rx="5" ry="5">
-                </rect>
-                <rect x="205" y="296" width="40" height="80" rx="5" ry="5">
-                </rect>
-                <rect x="250" y="301" width="35" height="70" rx="5" ry="5">
-                </rect>
-            </svg>
+            <div className={isLoading?"flex content-align justify-center": "absolute invisible"}>
+                <svg width="250" height="42rem" >
+                    <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
+                    </rect>
+                    <rect x="50" y="291" width="45" height="90"  rx="5" ry="5">
+                    </rect>
+                    <rect x="100" y="286" width="50" height="100" rx="5" ry="5">
+                    </rect>
+                    <rect x="155" y="291" width="45" height="90" rx="5" ry="5">
+                    </rect>
+                    <rect x="205" y="296" width="40" height="80" rx="5" ry="5">
+                    </rect>
+                    <rect x="250" y="301" width="35" height="70" rx="5" ry="5">
+                    </rect>
+                </svg>
+            </div>
         </div>
     )
 }

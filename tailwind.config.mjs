@@ -46,6 +46,10 @@ export default {
 				hori_scroll_R2L: {
 					"0%": {transform: "translateX(0%)"},
 					"100%": {transform: "translateX(calc(-50% - 5.5px))"}
+				},
+				articleCardFocus: {
+					"0%": {},
+					"100%": {"position": "relative"}
 				}
 			},
 			screens: {

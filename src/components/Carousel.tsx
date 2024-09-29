@@ -119,7 +119,7 @@ const Carousel = () => {
     // Strongly consider using a suspense instead
     return (
         <div className="w-full" style={{maxWidth: CarouselMaxLength}}>
-            <div className={isLoading? "absolute invisible":""}>
+            <div className={isLoading? "hidden":""}>
                 <div className="overflow-hidden h-[42rem]" 
                 ref={emblaRef}> 
                     <div className="flex mt-5" >
@@ -130,31 +130,33 @@ const Carousel = () => {
                             }
                     </div>
                 </div >
-                <div className="flex justify-center h-0">
-                    <button className="bg-white absolute" onClick={scrollPrev}>
+                <div className="flex justify-center gap-11">
+                    <button className="bg-white" onClick={scrollPrev}>
                         ScrollPrev
                     </button>
-                    <button className="bg-white absolute" onClick={scrollNext}>
+                    <button className="bg-white" onClick={scrollNext}>
                         ScrollNext
                     </button>
                 </div>
             </div>
-            <div className={isLoading?"flex content-align justify-center": "absolute invisible"}>
-                <svg width="250" height="42rem" >
-                    <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
-                    </rect>
-                    <rect x="50" y="291" width="45" height="90"  rx="5" ry="5">
-                    </rect>
-                    <rect x="100" y="286" width="50" height="100" rx="5" ry="5">
-                    </rect>
-                    <rect x="155" y="291" width="45" height="90" rx="5" ry="5">
-                    </rect>
-                    <rect x="205" y="296" width="40" height="80" rx="5" ry="5">
-                    </rect>
-                    <rect x="250" y="301" width="35" height="70" rx="5" ry="5">
-                    </rect>
-                </svg>
-            </div>
+            {isLoading &&
+                <div className={"flex content-align justify-center"}>
+                    <svg width="250" height="42rem" >
+                        <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
+                        </rect>
+                        <rect x="50" y="291" width="45" height="90"  rx="5" ry="5">
+                        </rect>
+                        <rect x="100" y="286" width="50" height="100" rx="5" ry="5">
+                        </rect>
+                        <rect x="155" y="291" width="45" height="90" rx="5" ry="5">
+                        </rect>
+                        <rect x="205" y="296" width="40" height="80" rx="5" ry="5">
+                        </rect>
+                        <rect x="250" y="301" width="35" height="70" rx="5" ry="5">
+                        </rect>
+                    </svg>
+                </div>
+            }
         </div>
     )
 }
@@ -162,165 +164,3 @@ const Carousel = () => {
 
 export default Carousel;
 
-
-{
-    <svg width="250" height="42rem" >
-    <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
-        <animate 
-            attributeName="x"
-            values="5;-35"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="y"
-            values="296;301"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="width"
-            values="40;35"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="height"
-            values="80;70"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-    </rect>
-    <rect x="50" y="291" width="45" height="90"  rx="5" ry="5">
-        <animate 
-            attributeName="x"
-            values="50;5"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="y"
-            values="291;296"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="width"
-            values="45;40"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="height"
-            values="90;80"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-    </rect>
-    <rect x="100" y="286" width="50" height="100" rx="5" ry="5">
-        <animate 
-            attributeName="x"
-            values="100;50"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="y"
-            values="286;291"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="width"
-            values="50;45"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="height"
-            values="100;90"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-    </rect>
-    <rect x="155" y="291" width="45" height="90" rx="5" ry="5">
-        <animate 
-            attributeName="x"
-            values="155;100"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="y"
-            values="291;286"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="width"
-            values="45;50"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="height"
-            values="90;100"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-    </rect>
-    <rect x="205" y="296" width="40" height="80" rx="5" ry="5">
-        <animate 
-            attributeName="x"
-            values="205;155"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="y"
-            values="296;291"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="width"
-            values="40;45"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="height"
-            values="80;90"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-    </rect>
-    <rect x="250" y="301" width="35" height="70" rx="5" ry="5">
-        <animate 
-            attributeName="x"
-            values="250;205"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="y"
-            values="301;296"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="width"
-            values="35;40"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-        <animate 
-            attributeName="height"
-            values="70;80"
-            dur="0.1s"
-            repeatCount="indefinite"
-        />
-    </rect>
-
-</svg>
-}

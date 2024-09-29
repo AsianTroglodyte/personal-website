@@ -1,5 +1,5 @@
 import Tag from "./Tag.jsx";
-import {useRef, useLayoutEffect, useEffect, useState} from 'react';
+import {useRef, useLayoutEffect, useEffect} from 'react';
 
 interface UserProps {
     carouselDatum: {
@@ -31,7 +31,7 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
             
             // when rerunning code by saving, the number of description lines decrease. the following declaration prevents that.
             // I suspect that it might have to do with height that is acquired by the code while the page is rendering.
-            descriptionTextRef.current.style.maxHeight=  `120px`;
+            descriptionTextRef.current.style.maxHeight=  `110px`;
 
             const textHeight = descriptionTextRef.current.getBoundingClientRect().height;
             console.log("descriptionTextRef: ", descriptionTextRef.current.innerText);

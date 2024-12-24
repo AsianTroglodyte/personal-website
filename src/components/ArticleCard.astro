@@ -18,7 +18,7 @@ const {id, title, description, src, date, alt, tags} = Astro.props.articleDatum;
 // for accessible linking: https://inclusive-components.design/cards/,
 ---
 
-<article class="grid rounded-xl p-1 relative duration-200 aspect-square
+<article class="flex flex-col gap-3 rounded-xl p-1 relative duration-200 aspect-square
 hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)]
 focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">
     <img class="object-cover w-full rounded-xl aspect-[16/9]" src={src} alt={alt}>

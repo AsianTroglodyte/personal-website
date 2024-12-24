@@ -6,13 +6,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 <html class="bg-PWBlack">
 	<head>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=fallback " rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=fallback " rel="stylesheet">
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header isLandingPage={false} BGColor="PWBlack" color='PWWhite'></Header>
+		<Header isLandingPage={false} BGColor="PWBlack" color="PWWhite"></Header>
 		<main class="mt-32 w-100vw flex flex-col items-center" >
 			<div class="flex w-full flex-row gap-10 justify-center p-16">
 				<div class="flex-col ">
@@ -32,69 +33,72 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</p>
 			
 			<!-- Experience -->
-			<div class="bg-PWRed-600 flex flex-col gap-20 justify-center w-full p-16">
-				<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Experience</h2>
-				<ol>
-					<!-- very wacky, check the checked answer. Namely native child selectors: 
-					https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
-					<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
-					hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
-					transition duration-200">
-						<div class="font-notoSerif font-medium text-lg break-all">bruh</div>
-						<div class="font-notoSerif font-medium text-lg break-all">bruh</div>
-						<div class="font-notoSerif font-medium text-lg break-all">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-							Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-							massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-							nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-							auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						</div>
-					</li>
+			<!-- NOTE - first div is basically the background. this is for setting max-width for content -->
+			<div class="bg-PWRed-600 w-full flex justify-center">
+				<div class="max-w-[1200px] flex flex-col gap-20 justify-center w-full p-16">
+					<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Experience</h2>
+					<ol>
+						<!-- very wacky, check the checked answer. Namely native child selectors: 
+						https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
+						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
+						transition duration-200">
+							<div class="font-notoSerif font-medium text-lg break-all">bruh</div>
+							<div class="font-notoSerif font-medium text-lg break-all">bruh</div>
+							<div class="font-notoSerif font-medium text-lg break-all">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+								nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+								auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+							</div>
+						</li>
 
-					<hr class="col-span-3 border-top-[2px] border-PWBlack">
+						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 
-					<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
-					hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
-					transition duration-200">
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-							Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-							massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-							nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-							auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						</div>
-					</li>
+						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
+						transition duration-200">
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+								nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+								auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+							</div>
+						</li>
 
-					<hr class="col-span-3 border-top-[2px] border-PWBlack">
-					
-					<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
-					hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
-					transition duration-200">
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-							Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-							massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-							nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-							auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						</div>
-					</li>
-				</ol>
-				<p class="font-notoSerif font-medium text-lg">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-					Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-					massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-					nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-					auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-					Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-					massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-					nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-					auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-				</p>
+						<hr class="col-span-3 border-top-[2px] border-PWBlack">
+						
+						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
+						transition duration-200">
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+								nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+								auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+							</div>
+						</li>
+					</ol>
+					<p class="font-notoSerif font-medium text-lg">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+						Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+						massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+						nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+						auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+						Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+						massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+						nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+						auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+					</p>
+				</div>
 			</div>
 			<!-- Filler -->
 			<!-- tailwind config for Implementation details of infinite scroll animation etc. -->
@@ -120,69 +124,72 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 			
 			<!-- Projects -->
-			<div class="bg-PWBlue-600 flex flex-col gap-20 justify-center w-full p-16">
-				<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Projects</h2>
-				<ol>
-					<!-- very wacky, check the checked answer. Namely native child selectors: 
-					https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
-					<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
-					hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
-					transition duration-200">
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-							Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-							massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-							nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-							auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						</div>
-					</li>
+			<!-- NOTE - first div is basically the background. this is for setting max-width for content -->
+			<div class="bg-PWBlue-600 w-full flex justify-center">
+				<div class="max-w-[1200px] flex flex-col gap-20 justify-center w-full p-16">
+					<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Projects</h2>
+					<ol>
+						<!-- very wacky, check the checked answer. Namely native child selectors: 
+						https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
+						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
+						transition duration-200">
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+								nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+								auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+							</div>
+						</li>
 
-					<hr class="col-span-3 border-top-[2px] border-PWBlack">
+						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 
-					<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
-					hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
-					transition duration-200">
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-							Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-							massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-							nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-							auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						</div>
-					</li>
+						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
+						transition duration-200">
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+								nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+								auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+							</div>
+						</li>
 
-					<hr class="col-span-3 border-top-[2px] border-PWBlack">
-					
-					<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
-					hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
-					transition duration-200">
-						<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-							Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-							massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-							nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-							auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						</div>
-					</li>
-				</ol>
-				<p class="font-notoSerif font-medium text-lg">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-					Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-					massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-					nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-					auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 				
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-					Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-					massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-					nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-					auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-				</p>
+						<hr class="col-span-3 border-top-[2px] border-PWBlack">
+						
+						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
+						transition duration-200">
+							<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+								nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+								auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+							</div>
+						</li>
+					</ol>
+					<p class="font-notoSerif font-medium text-lg">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+						Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+						massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+						nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+						auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 				
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+						Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+						massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+						nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+						auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+					</p>
+				</div>
 			</div>
 
 			<!-- Filler -->
@@ -209,69 +216,72 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 
 			<!-- Education -->
-			<div class="bg-PWGreen-500 flex flex-col gap-20 justify-center w-full p-16">
-				<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Education</h2>
-				<ol>
-					<!-- very wacky, check the checked answer. Namely native child selectors: 
-					https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
-					<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5 
-					hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md 
-					transition duration-200">
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-							Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-							massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-							nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-							auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						</div>
-					</li>
+			<!-- NOTE - first div is basically the background. this is for setting max-width for content -->
+			<div class="bg-PWGreen-500 w-full flex justify-center">
+				<div class="max-w-[1200px] flex flex-col gap-20 justify-center w-full p-16">
+					<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Education</h2>
+					<ol>
+						<!-- very wacky, check the checked answer. Namely native child selectors: 
+						https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
+						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5 
+						hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md 
+						transition duration-200">
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+								nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+								auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+							</div>
+						</li>
 
-					<hr class="col-span-3 border-top-[2px] border-PWBlack">
+						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 
-					<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5 
-					hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md
-					transition duration-200">
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all ">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-							Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-							massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-							nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-							auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						</div>
-					</li>
+						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5 
+						hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md
+						transition duration-200">
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all ">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+								nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+								auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+							</div>
+						</li>
 
-					<hr class="col-span-3 border-top-[2px] border-PWBlack">
-					
-					<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5 
-					hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md 
-					transition duration-200">
-						<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
-						<div class="font-notoSerif font-medium text-lg  break-all">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-							Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-							massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-							nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-							auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						</div>
-					</li>
-				</ol>
-				<p class="font-notoSerif font-medium text-lg">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-					Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-					massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-					nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-					auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 				
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-					Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-					massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-					nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-					auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-				</p>
+						<hr class="col-span-3 border-top-[2px] border-PWBlack">
+						
+						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5 
+						hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md 
+						transition duration-200">
+							<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
+							<div class="font-notoSerif font-medium text-lg  break-all">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+								nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+								auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+							</div>
+						</li>
+					</ol>
+					<p class="font-notoSerif font-medium text-lg">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+						Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+						massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+						nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+						auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 				
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
+						Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
+						massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
+						nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
+						auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
+					</p>
+				</div>
 			</div>
 
 		</main>

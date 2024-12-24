@@ -116,26 +116,37 @@ const Carousel = () => {
 
     }, [emblaApi, tweenScale])
 
-    // Strongly consider using a suspense instead
+    // Suspense would not work the carousel must exist to have the styling begin to apply
     return (
         <div className="w-full" style={{maxWidth: CarouselMaxLength}}>
-            <div className={isLoading? "hidden":""}>
-                <div className="overflow-hidden h-[42rem]" 
+            {/* grid is for overlapping buttons */}
+            <div className={isLoading? "hidden":"w-full grid grid-cols-[1fr_1fr]"}>
+                <div className="overflow-hidden w-full h-[42rem] col-[1_/_3] row-[1_/_2]" 
                 ref={emblaRef}> 
-                    <div className="flex mt-5" >
+                    <div className="flex mt-5 col-[1_/_4]" >
                     {/* using center for the alignment is very weird as it reformatted on screen. align: start is used instead*/
                             carouselData.map((carouselDatum) =>
                                 <FeaturedArticleCard key={carouselDatum.id} carouselDatum={carouselDatum}/>
                             )
                             }
                     </div>
-                </div >
-                <div className="flex justify-center gap-11">
-                    <button className="bg-white" onClick={scrollPrev}>
-                        ScrollPrev
+                </div>
+                {/* using absolute position is a bit wonky as it will change z-index and thus interactivity
+                of the carousel. positioning using flex and margin is required. for SVG, consider changing svg
+                d attribute so that center is not necessary*/}
+                <div className="flex justify-start col-[1_/_2] row-[1_/_2] mb-5">
+                    <button className="flex justify-center items-center self-center w-12 h-12 bg-black z-10 ml-5 rounded-full" onClick={scrollPrev}>
+                    <svg width="25px" height="25px" viewBox="0 0 24 24">
+                        <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" stroke="white" fill="white" style={{transform:"scale(-1, 1) translate(-100%, 0px)"}}/>
+                        {/* transform="scale(-1 1) translate(-800px 0px)" style={{transform:"scale(-1, 1) translate(-40px, 0px)"}}*/}
+                    </svg>
                     </button>
-                    <button className="bg-white" onClick={scrollNext}>
-                        ScrollNext
+                </div>
+                <div className="flex justify-end col-[2_/_3] row-[1_/_2] mb-5">
+                    <button className="flex justify-center items-center self-center w-12 h-12 bg-black z-10 mr-5 rounded-full" onClick={scrollNext}>
+                    <svg width="25px" height="25px" viewBox="0 0 24 24">
+                        <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" stroke="white" fill="white"/>
+                    </svg>
                     </button>
                 </div>
             </div>

@@ -23,33 +23,31 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
 
     // typically useLayoutEffect may be used, but it is so subtle that I went for more performance with useEffect.
     // useEffect changes number of allowable lines using clamp based on size of container for description
-    useEffect (() => {
-        // null checking to satisfy TypeScript
-        console.log("useEffect ran: ", descriptionTextRef.current?.getBoundingClientRect().height);
-        if (descriptionTextRef.current !== null && 
-            descriptionTextRef.current.offsetHeight !== 0){            
+    // useEffect (() => {
+    //     // null checking to satisfy TypeScript
+    //     console.log("useEffect ran: ", descriptionTextRef.current?.getBoundingClientRect().height);
+    //     if (descriptionTextRef.current !== null && 
+    //         descriptionTextRef.current.offsetHeight !== 0){            
             
-            // when rerunning code by saving, the number of description lines decrease. the following declaration prevents that.
-            // I suspect that it might have to do with height that is acquired by the code while the page is rendering.
-            descriptionTextRef.current.style.maxHeight=  `110px`;
+    //         // when rerunning code by saving, the number of description lines decrease. the following declaration prevents that.
 
-            const textHeight = descriptionTextRef.current.getBoundingClientRect().height;
-            console.log("descriptionTextRef: ", descriptionTextRef.current.innerText);
-            console.log("textHeight: ", textHeight);
-            const lineNum = Math.floor(textHeight/(1.25 * 16));
-            console.log("lineNum: ", lineNum)
-            const newMaxHeight = lineNum * 1.25 * 16; 
-            console.log("newMaxHeight", newMaxHeight);
+    //         const textHeight = descriptionTextRef.current.getBoundingClientRect().height;
+    //         console.log("descriptionTextRef: ", descriptionTextRef.current.innerText);
+    //         console.log("textHeight: ", textHeight);
+    //         const lineNum = Math.floor(textHeight/(1.25 * 16));
+    //         console.log("lineNum: ", lineNum)
+    //         const newMaxHeight = lineNum * 1.25 * 16; 
+    //         console.log("newMaxHeight", newMaxHeight);
 
-            descriptionTextRef.current.style.webkitLineClamp = `${lineNum}`;
-            descriptionTextRef.current.style.display =  "-webkit-box";
-            descriptionTextRef.current.style.webkitBoxOrient = "vertical";
-            descriptionTextRef.current.style.overflow= "hidden";
+    //         descriptionTextRef.current.style.webkitLineClamp = `${lineNum}`;
+    //         descriptionTextRef.current.style.display =  "-webkit-box";
+    //         descriptionTextRef.current.style.webkitBoxOrient = "vertical";
+    //         descriptionTextRef.current.style.overflow= "hidden";
 
-            descriptionTextRef.current.style.maxHeight=  `${newMaxHeight}px`;
-        }
-        // dependency as size changes as browser loads stuff
-    }, [descriptionTextRef.current]);
+    //         descriptionTextRef.current.style.maxHeight=  `${newMaxHeight}px`;
+    //     }
+    //     // dependency as size changes as browser loads stuff
+    // }, [descriptionTextRef.current]);
 
 
     return (
@@ -58,19 +56,20 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
         embla-slide-number">
         {/* Thumbnail. h & w need to be full as img is a container for the img. This makes object-cover work grid-cols-[minmax(_18rem,18rem)*/}
         {/* title description thingy. Max  */}
-        <div className="grid grid-rows-[minmax(_0rem,_22rem)_minmax(_0rem,_16rem)] grid-cols-[minmax(_20rem,_20rem)] bg-white rounded-md shadow-md 
+        <div className="grid grid-rows-[minmax(_0rem,_22rem)_minmax(_0rem,_16rem)] grid-cols-[minmax(_20rem,_20rem)] bg-white rounded-md 
         font-notoSerif ">
             <img className="object-cover h-full w-full rounded-t-md" alt={carouselDatum.alt} src={carouselDatum.src}></img>
             <div className="flex flex-col p-4 justify-between">
                 <div className="flex flex-col grow gap-3 overflow-hidden">
-                    {/* advanced-truncation is for truncating and putting ellipses on overflowing text content */}
-                    <h6 className="title-text text-base font-bold max-h-[4.5rem] overflow-hidden advanced-trunction-3">
+                    {/* advanced-truncation is for truncating and putting ellipses on overflowing text content 
+                    interesting stuff for following elements to allow growing and growing and shrinking: https://codepen.io/Karan-Swansi-No/pen/RwzyrMv*/}
+                    <h6 className="title-text text-base font-bold max-h-[4.5rem] overflow-hidden advanced-trunction-3 shrink-0">
                         <a className="font-notoSerif after:absolute after:inset-0 focus:outline-none" href="/AboutMe">
                             {carouselDatum.title}
                         </a>
                     </h6> 
-                    <div className="description-container overflow-hidden grow">
-                        <p className="description-text text-sm overflow-hidden" ref={descriptionTextRef}>
+                    <div className="description_container flex-col grow shrink">
+                        <p className="description_text text-sm overflow-hidden grow-0 shrink" ref={descriptionTextRef}>
                             {carouselDatum.description}
                         </p>
                     </div>

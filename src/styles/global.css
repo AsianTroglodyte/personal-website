@@ -7,8 +7,6 @@
 */
 
 /* fonts in css allow for more control and stuff. slight delay though */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind utilities;
 @tailwind base;
 @tailwind components;
@@ -59,21 +57,67 @@
 	inherits: true
 }
 
-/* .description_container:nth-child(1) { --h: 2.25rem }
-.description_container:nth-child(2) { --h: 5.75rem }
-.description_container:nth-child(3) { --h: 4.5rem } 
-.description_container:nth-child(4) { --h: 3.75rem } */
-
-
-/* .description-container {
-	--h: 100%;
-	--l: 1lh;
-	height: --h;
+.description_container {
+	container-type: size;
+	container-name: description_container;
 }
 
 .description-text {
 	display: -webkit-box;
 	-webkit-line-clamp: round(down, tan(atan2(var(100%), var(--l))), 1); 
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+} 
+
+
+@container description_container (min-height: 2.5rem) {
+	.description_text {
+		display: -webkit-box;
+		-webkit-line-clamp: 2; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+}
+
+@container description_container (min-height: 3.75rem) {
+	.description_text {
+		display: -webkit-box;
+		-webkit-line-clamp: 3; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+}
+
+@container description_container (min-height: 5rem) {
+	.description_text {
+		display: -webkit-box;
+		-webkit-line-clamp: 4; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+}
+
+@container description_container (min-height: 6.25rem) {
+	.description_text {
+		display: -webkit-box;
+		-webkit-line-clamp: 5; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+}
+
+@container description_container (min-height: 7.5rem) {
+	.description_text {
+		display: -webkit-box;
+		-webkit-line-clamp: 6; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+}
+
+/* .description_text {
+	display: -webkit-box;
+	-webkit-line-clamp: 1; 
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 } */

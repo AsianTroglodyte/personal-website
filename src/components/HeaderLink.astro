@@ -1,25 +1,48 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
+
 type Props = HTMLAttributes<'a'>;
 
-const { href, class: className, ...props } = Astro.props;
+const { href, color, class: className, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === '/' + subpath?.[0];
+
+
+// again it is very stupid, but figuring out how to make it more modular right now is not the biggest deal right now
+// should work on later
+const isWhite = color === "PWWhite" 
+const isBlack = color === "PWBlack"
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
-	<slot />
-</a>
+<div>
+	<!-- styles for the corresponding classes are kept in the global.css -->
+	<a href={href} class:list={[className, { active: isActive }, { isWhite: isWhite}, { isBlack: isBlack}]} {...props}>
+		<slot />
+		pathname: {pathname}
+		subpath: {subpath}
+	</a>
+</div>
 <style>
 	a {
 		display: inline-block;
 		text-decoration: none;
 	}
+	/* I avoided using bold here because it causes subtle layout shifts. clever use of x offset allows
+	for a very bold-like look: https://stackoverflow.com/questions/5687035/css-bolding-some-text-without-changing-its-containers-size 
+	note that chaining two classes together without spaces means we are asking for an element with both classes. This applies to 2+*/
 	a.active {
-		font-weight: bolder;
+		text-decoration: underline;
+	}		
+
+	a.active.isBlack {
+		text-shadow: 1px 0px 0px #141414 ;
+		text-decoration: underline;
+	}
+	a.active.{
+		text-shadow: 1px 0px 0px #F0F0F0;
 		text-decoration: underline;
 	}
 </style>

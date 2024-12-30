@@ -6,13 +6,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 <html class="bg-PWBlack">
 	<head>
-		        <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=fallback " rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=fallback " rel="stylesheet">
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body>
+    <!-- body requires flex and flex-col to ensure that margins do not collapse -->
+    <body class="flex flex-col">
 		<Header isLandingPage={false} BGColor="PWBlack" color="PWWhite"></Header>
 		<main class="mt-32 w-100vw flex flex-col items-center" >
 			<div class="flex w-full flex-row gap-10 justify-center p-16">

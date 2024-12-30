@@ -1,16 +1,5 @@
 ---
-import Header from "../components/Header.astro";
-import BaseHead from"../components/BaseHead.astro";
-import ArticleCard from "../components/ArticleCard.astro";
-import Carousel from "../components/Carousel.tsx";
-import Masonry from "../components/Masonry.astro"
-
-
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts.ts';
-
-let cavup_vals = [ "85", "95", "105", "115", "125", "135", "145", "155", "165", "175"];
-let cavdown_vals = ["45", "55", "65", "75", "85", "95", "105", "115", "125"];
-
+import Tag from "../components/Tag.jsx"
 // consider turning date item into date javascript object
 const articleData = [{id: 0, title: "Is it still worth it to learn to code.", description: "description 0", date: "July 3, 2002", src: "src/assets/article-placeholders/shrimpson-boys.png", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
     {id: 1, title: "Title 1", description: "This description is for ensuring that content is properly truncated when content would \
@@ -31,18 +20,17 @@ const articleDataScrambled1 = [
     {id: 2, title: "Title 2", description: "This description is for ensuring that content is properly truncated when content would \
     otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to \
     the user that content has been cut off", src: "src/assets/article-placeholders/power-1.jpg", date: "April 4, 2016", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-    {id: 0, title: "Is it still worth it to learn to code.", description: "description 0", date: "July 3, 2002", src: "src/assets/article-placeholders/shrimpson-boys.png", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-    {id: 5, title: "Deep Learning for Natural Language Processing: Techniques and Applications", description: "This description is for ensuring that content is properly truncated when content would \
-    otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to \
-    the user that content has been cut off", src: "src/assets/article-placeholders/lisa-wp-edit.jpg", date: "July 12, 2016", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
     {id: 1, title: "Title 1", description: "This description is for ensuring that content is properly truncated when content would \
     otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to \
     the user that content has been cut off", src: "src/assets/article-placeholders/kon.jpg", date: "September 29, 2015", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
     {id: 3, title: "Title 3", description: "description 4", src: "src/assets/article-placeholders/CSM-3-rooms.jpg", date: "March 6, 2019", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
     {id: 4, title: "Title 4", description: "description 5", src: "src/assets/article-placeholders/Cytus-wallpaper v2.png",  date: "November 25, 2016", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
     {id: 7, title: "Demystifying Quantum Computing: A Beginner’s Guide", description: "description 8", src: "src/assets/article-placeholders/kita-bocchi-phone-wp-2.png", date: "February 22, 2018", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-    {id: 6, title: "Why is Alegria art hated so much?", description: "description 7", src: "src/assets/article-placeholders/rin-phone-wp.png", date: "September 18, 2017", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}
-];
+    {id: 6, title: "Why is Alegria art hated so much?", description: "description 7", src: "src/assets/article-placeholders/rin-phone-wp.png", date: "September 18, 2017", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+    {id: 0, title: "Is it still worth it to learn to code.", description: "description 0", date: "July 3, 2002", src: "src/assets/article-placeholders/shrimpson-boys.png", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+    {id: 5, title: "Deep Learning for Natural Language Processing: Techniques and Applications", description: "This description is for ensuring that content is properly truncated when content would \
+    otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to \
+    the user that content has been cut off", src: "src/assets/article-placeholders/lisa-wp-edit.jpg", date: "July 12, 2016", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}];
 
 
 const articleDataScrambled2 = [
@@ -54,83 +42,103 @@ const articleDataScrambled2 = [
     the user that content has been cut off", src: "src/assets/article-placeholders/power-1.jpg", date: "April 4, 2016", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
     {id: 4, title: "Title 4", description: "description 5", src: "src/assets/article-placeholders/Cytus-wallpaper v2.png",  date: "November 25, 2016", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
     {id: 0, title: "Is it still worth it to learn to code.", description: "description 0", date: "July 3, 2002", src: "src/assets/article-placeholders/shrimpson-boys.png", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+    {id: 7, title: "Demystifying Quantum Computing: A Beginner’s Guide", description: "description 8", src: "src/assets/article-placeholders/kita-bocchi-phone-wp-2.png", date: "February 22, 2018", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
     {id: 3, title: "Title 3", description: "description 4", src: "src/assets/article-placeholders/CSM-3-rooms.jpg", date: "March 6, 2019", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
     {id: 5, title: "Deep Learning for Natural Language Processing: Techniques and Applications", description: "This description is for ensuring that content is properly truncated when content would \
     otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to \
     the user that content has been cut off", src: "src/assets/article-placeholders/lisa-wp-edit.jpg", date: "July 12, 2016", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-    {id: 6, title: "Why is Alegria art hated so much?", description: "description 7", src: "src/assets/article-placeholders/rin-phone-wp.png", date: "September 18, 2017", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-    {id: 7, title: "Demystifying Quantum Computing: A Beginner’s Guide", description: "description 8", src: "src/assets/article-placeholders/kita-bocchi-phone-wp-2.png", date: "February 22, 2018", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}];
+    {id: 6, title: "Why is Alegria art hated so much?", description: "description 7", src: "src/assets/article-placeholders/rin-phone-wp.png", date: "September 18, 2017", alt: "", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}];
 
 ---
 
-<html class="bg-PWWhite">
-    <head>
-        <!-- use preload sparingly clogs things up quite a bit otherwise preconnect 
-        creates network connection before loading the rest. FOUT is usually better than FOIT -->
-        <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=fallback" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=fallback" rel="stylesheet">
-        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    </head>
-    <!-- body requires flex and flex-col to ensure that margins do not collapse -->
-    <body class="flex flex-col">
-        <Header isLandingPage={false} BGColor="PWWhite" color='PWBlack'></Header>
-        <main class="flex flex-col items-center justify-center mt-10">
-            <h1 class="font-notoSerifDisplay text-7xl font-black text-PWBlack mx-5 text-center">
-                Karan Swansi's <span class="text-PWRed-600">Portfolio</span>
-            </h1>
-            <!-- Featured -->
-            <h2 class="font-notoSerifDisplay text-5xl font-black mt-10 text-PWBlack mx-5 text-center">
-                Stuff I'm Most Proud of:
-            </h2>
-
-            <!-- grid item cannot be smaller than the size of its content (auto) by default. 
-                same applies to flex along the main axis. Interesting stackoverflow threads on this:
-                https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
-                https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
-            -->
-            <!-- client:load -->
-            <Carousel client:load/>
-
-            <!-- articles -->
-            <h2 class="font-notoSerifDisplay text-5xl font-black mt-10 text-PWBlack mx-5 text-center">
-                All of my <span class="text-PWRed-600"> Projects </span>  
-            </h2>
-            <p class="font-notoSerif text-xl font-medium mt-10 text-PWBlack text-center	">Looking For Something?</p>
-            
-            <!-- search bar -->
-            <!-- max-w calc because of funny inline element behavior with auto width made implementing
-            the margin fairly difficult. typically auto for block level element would handle this nicely while respecing margins,
-            border, and padding. Not worth fully understanding how to do without max-w calc atm -->
-            <input class="box-border h-12 my-5 w-[33rem] max-w-[calc(100%_-_2.5rem)] 
-            font-notoSerif appearance-none rounded self-center text-PWBlack"
-            type="search"> 
+<!-- masonry portfolio area -->
+<section class="mt-10 gap-5 mx-4 grid
+grid-cols-[repeat(_1,_minmax(_18rem,_30rem))]
+lg:grid-cols-[repeat(_4,_minmax(_18rem,_30rem))]
+md:grid-cols-[repeat(_3,_minmax(_18rem,_30rem))]
+sm:grid-cols-[repeat(_2,_minmax(_18rem,_30rem))]">
+    <div class="flex flex-col gap-2">
+        {articleData.map((articleDatum) => 
+            <article class="flex flex-col gap-3 rounded-xl p-1 relative duration-200 
+            hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)]
+            focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">
+                <img class="object-cover w-full rounded-xl" src={articleDatum.src} alt={articleDatum.alt}>
                 
-            </input>
+                <h6 class="font-notoSerif text-md font-bold overflow-hidden advanced-truncation-2">
+                    <a class="after:absolute after:inset-0 focus:outline-none" 
+                    href="/AboutMe">
+                        {articleDatum.title}
+                    </a>
+                </h6>
 
+                <p class="font-notoSerif text-sm max-h-14 overflow-hidden advanced-truncation-2 " >
+                    {articleDatum.date}
+                </p>
+                
+                <div class="font-notoSerif flex flex-row gap-1 ">
+                {
+                    articleDatum.tags.map((tagData) => 
+                        <Tag tagData={tagData}/>
+                    )
+                }
+                </div>
+            </article>
+        )}
+    </div>
 
-            <!-- portfolio area -->
-            <!-- <section class="mt-10 gap-5 mx-4 grid
-                            grid-cols-[repeat(_1,_minmax(_18rem,_30rem))]
-                            lg:grid-cols-[repeat(_4,_minmax(_18rem,_30rem))]
-                            md:grid-cols-[repeat(_3,_minmax(_18rem,_30rem))]
-                            sm:grid-cols-[repeat(_2,_minmax(_18rem,_30rem))]">
-                {articleData.map((articleDatum) => 
-                    <ArticleCard articleDatum={articleDatum}/>
-                )}
-            </section> -->
+    <div class="flex flex-col gap-2">
+        {articleDataScrambled1.map((articleDatum) =>  
+            <article class="flex flex-col gap-3 rounded-xl p-1 relative duration-200
+            hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)]
+            focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">
+                <img class="object-cover w-full rounded-xl " src={articleDatum.src} alt={articleDatum.alt}>
+                <h6 class="font-notoSerif text-md font-bold overflow-hidden advanced-truncation-2">
+                    <a class="after:absolute after:inset-0 focus:outline-none" 
+                    href="/AboutMe">
+                        {articleDatum.title}
+                    </a>
+                </h6>
 
-            <!-- masonry portfolio area -->
-            <Masonry>
+                <p class="font-notoSerif text-sm max-h-14 overflow-hidden advanced-truncation-2 " >
+                    {articleDatum.date}
+                </p>
+                
+                <div class="font-notoSerif flex flex-row gap-1 ">
+                {
+                    articleDatum.tags.map((tagData) => 
+                        <Tag tagData={tagData}/>
+                    )
+                }
+                </div>
+            </article>
+        )}
+    </div>
+    <div class="flex flex-col gap-2">
+        {articleDataScrambled2.map((articleDatum) => 
+            <article class="flex flex-col gap-3 rounded-xl p-1 relative duration-200
+            hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)]
+            focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">
+                <img class="object-cover w-full rounded-xl" src={articleDatum.src} alt={articleDatum.alt}>
+                <h6 class="font-notoSerif text-md font-bold overflow-hidden advanced-truncation-2">
+                    <a class="after:absolute after:inset-0 focus:outline-none" 
+                    href="/AboutMe">
+                        {articleDatum.title}
+                    </a>
+                </h6>
 
-        </main>
-    </body>
-</html>
-
-
-
+                <p class="font-notoSerif text-sm max-h-14 overflow-hidden advanced-truncation-2 " >
+                    {articleDatum.date}
+                </p>
+                
+                <div class="font-notoSerif flex flex-row gap-1 ">
+                {
+                    articleDatum.tags.map((tagData) => 
+                        <Tag tagData={tagData}/>
+                    )
+                }
+                </div>
+            </article>
+        )}
+    </div>
+</section>
 

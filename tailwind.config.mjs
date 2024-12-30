@@ -57,7 +57,7 @@ export default {
 				"sm": "650px",
 				"md": "1020px",
 				"lg": "1500px",
-			}
+			},
 		},
 	},
 	plugins: [],

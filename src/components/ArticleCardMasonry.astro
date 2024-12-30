@@ -18,24 +18,28 @@ const {id, title, description, src, date, alt, tags} = Astro.props.articleDatum;
 // for accessible linking: https://inclusive-components.design/cards/,
 ---
 
-<article class="flex flex-col gap-3 rounded-xl p-1 relative duration-100 aspect-square
+<article class="flex flex-col gap-3 rounded-xl p-1 relative duration-200 aspect-square
 hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)]
 focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">
     <img class="object-cover w-full rounded-xl aspect-[16/9]" src={src} alt={alt}>
-    <h6 class="font-notoSerif text-md font-bold overflow-hidden advanced-truncation-2">
-        <a class="after:absolute after:inset-0 focus:outline-none" 
-        href="/AboutMe">
-            {title}
-        </a>
-    </h6>
-    <p class="font-notoSerif text-sm max-h-14 overflow-hidden advanced-truncation-2 " >
-        {date}
-    </p>
-    <div class="font-notoSerif flex flex-row gap-1 ">
-    {
-        tags.map((tagData) => 
-            <Tag tagData={tagData}/>
-        )
-    }
+    <div class="flex flex-col w-full py-2 gap-3 font-notoSerif">
+        <div class="flex flex-col gap-3 overflow-hidden">
+            <h6 class="text-md font-bold overflow-hidden advanced-truncation-2">
+                <a class="after:absolute after:inset-0 focus:outline-none
+                " href="/AboutMe">
+                    {title}
+                </a>
+            </h6>
+            <p class="text-sm max-h-14 overflow-hidden advanced-truncation-2 " >
+                {date}
+            </p>
+        </div>
+        <div class="flex flex-row gap-1 ">
+        {
+            tags.map((tagData) => 
+                <Tag tagData={tagData}/>
+            )
+        }
+        </div>
     </div>
 </article>

@@ -41,16 +41,14 @@ const FeaturedArticleCard = ( {carouselDatum}: UserProps) => {
                         </p>
                     </div>
                 </div>
-                <div className="flex flex-col gap-3 pt-3">
-                    {/* consider adding datetime attribute for SEO*/}
-                    <time className="font-notoSerif">Date: July 3, 2002</time>
-                    <div className="flex flex-row gap-1">
-                        {
-                            carouselDatum.tags.map((tagData) => 
-                                <Tag key={tagData.id} tagData={tagData}/>
-                            )
-                        }
-                    </div>
+                {/* consider adding datetime attribute for SEO*/}
+                <time className="font-notoSerif mb-3">Date: July 3, 2002</time>
+                <div className="flex flex-row gap-1">
+                    {
+                        carouselDatum.tags.map((tagData) => 
+                            <Tag key={tagData.id} tagData={tagData}/>
+                        )
+                    }
                 </div>
             </div>
         </div>

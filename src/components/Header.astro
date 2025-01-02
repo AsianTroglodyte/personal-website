@@ -38,9 +38,9 @@ const image_classes = (color === "PWWhite")
 	: "logo rounded-full h-8 shadow-[0px_0px_0px_8px_#F0F0F0]"
 
 ---
-<!-- conditionalHeaderClasses is for absolute positioning which conveniently prevents scroll bar on Landing page-->
-<header class={" h-8 font-notoSerif fixed duration-300 z-50 w-full " 
-+ " text-" + color + " bg-" + BGColor + " " + conditionalHeaderClasses}>
+<!-- conditionalHeaderClasses is for absolute positioning which conveniently prevents scroll bar on Landing page: duration-300 -->
+<header class={" h-8 font-notoSerif fixed z-50 w-full " 
++ " text-" + color + " bg-" + BGColor + " " + conditionalHeaderClasses} style="top: 0px">
 	<!-- is there a way to do this without inline styling? -->
 	<nav class={"h-full w-full " + conditionalNavClasses + " "} >
 		<!-- removing bg-color for as header handles it + "bg-" + BGColor -->
@@ -98,28 +98,37 @@ const image_classes = (color === "PWWhite")
 </header>
 
 <script>
-	let prevScrollpos = window.scrollY;
+	let prevScrollPos = window.scrollY;	
 	window.onscroll = function() {
-		var currentScrollPos = window.scrollY;
-		if (prevScrollpos > currentScrollPos) {
-			// must appease TS
-			let header = document.querySelector<HTMLElement>("header");
-			if (header ) {
+		// keep in mind that we must appease TS
+		let header = document.querySelector<HTMLElement>("header");
+		if (!header) {
+			return
+		}
+		let currentScrollPos = window.scrollY;
+
+		let headerTopPosNum = Number(header.style.top.match(/[-+]?\d*\.?\d+/g) ?? ["10"][0]); // square up on regex if havent
+
+		// console.log("headerTopPosNum: ", headerTopPosNum, "currentScrollPos: ", currentScrollPos, "prevScrollPos: ", prevScrollPos);
+
+		if (prevScrollPos > currentScrollPos) {
+			if (0 > (headerTopPosNum + (prevScrollPos - currentScrollPos))) {
+				header.style.top = `${(headerTopPosNum + (prevScrollPos - currentScrollPos))}px`;
+			}
+			else {
 				header.style.top = "0px"
 			}
-			else {
-				console.error("Header element not found");
-			}
 		} else {
-			// must appease TS
-			let header = document.querySelector<HTMLElement>("header");
-			if (header ) {
+			// we take current top positioning and minus it by how much we scrolled
+			if (-50 < (headerTopPosNum - (currentScrollPos - prevScrollPos)))
+			{
+				header.style.top = `${(headerTopPosNum - (currentScrollPos - prevScrollPos))}px`;
+			}
+			else {
 				header.style.top = "-50px"
 			}
-			else {
-				console.error("Header element not found");
-			}
 		}
-	prevScrollpos = currentScrollPos;
+		prevScrollPos = currentScrollPos;
 	}
+
 </script> 

@@ -7,27 +7,32 @@ interface DropdownMenuProps {
 export default function DropdownMenu({color}: DropdownMenuProps) {
 
     const [menuIsOpen, setMenuIsOpen] = useState(false)
-    // very stupid. pathname must persist across renders, and must be scoped regular vars 
-    // to my knowledge ref values should do the trick. I should turn component into astro component
+    // very stupid. pathname must be initialized on mount, must persist across renders, and must be scoped 
+    // regular vars to my knowledge ref values should do the trick. I should turn component into astro component
+    // using vanilla JS with a class that adds `display: none` styling would probably be much better 
     const pathname = useRef<string | null>(null);
+    const menuRef = useRef(null);
 
 
     useEffect(() => {
         document.addEventListener("click",(event)=>{ 
             const thisTarget = event.target as HTMLElement;
             if (thisTarget){
-                if (thisTarget.closest(".menu") || thisTarget.closest(".menu-button") ) {
-                    // if clicked inside main navbar element. do nothing.
-                    console.log("inside")
-                } 
-                else {
-                    // if clicked outside main navbar element. close it via toggling
-                    console.log("outside")
-                    setMenuIsOpen(false)
-                }
+                // if clicked inside main navbar element. do nothing.
+                if (thisTarget.closest(".menu") || thisTarget.closest(".menu-button") ) {} 
+                // if clicked outside main navbar element. close it via toggling
+                else setMenuIsOpen(false)
+                
             }
         });
         
+
+        var prevScrollPos = window.scrollY;
+        window.addEventListener("scroll", () => {
+            setMenuIsOpen(false)
+        })
+
+
         pathname.current = window.location.pathname;
         // pathname = pathname[subpath.length - 1]
         // not very pretty. should work on

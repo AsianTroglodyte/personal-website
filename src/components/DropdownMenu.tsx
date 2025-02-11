@@ -25,9 +25,7 @@ export default function DropdownMenu({color}: DropdownMenuProps) {
                 
             }
         });
-        
 
-        var prevScrollPos = window.scrollY;
         window.addEventListener("scroll", () => {
             setMenuIsOpen(false)
         })
@@ -35,12 +33,9 @@ export default function DropdownMenu({color}: DropdownMenuProps) {
 
         pathname.current = window.location.pathname;
         // pathname = pathname[subpath.length - 1]
-        // not very pretty. should work on
         let subpath = pathname.current.match(/[^\/]+/g) ?? "";
 
         if (subpath !== "") subpath = subpath
-        console.log("pathname: " + pathname + "\n" + "subpath: " + subpath);
-
     }, [])
 
     return ( 

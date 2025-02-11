@@ -38,14 +38,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			<div class="bg-PWRed-600 w-full flex justify-center">
 				<div class="max-w-[1200px] flex flex-col gap-20 justify-center w-full p-16">
 					<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Experience</h2>
-					<ol>
+					<ol class="flex flex-col gap-3">
 						<!-- very wacky, check the checked answer. Namely native child selectors: 
 						https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
-						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						<li class="
 						hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
 						transition duration-200">
-							<div class="font-notoSerif font-medium text-lg break-all">bruh</div>
-							<div class="font-notoSerif font-medium text-lg break-all">bruh</div>
+							<h3 class="font-notoSerif font-medium text-3xl break-all ">Title</h3>
+							<h4 class="font-notoSerif font-medium text-xl break-all ">Company</h4>
 							<div class="font-notoSerif font-medium text-lg break-all">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
@@ -57,12 +57,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 
-						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						<li class="
 						hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
 						transition duration-200">
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">
+							<h3 class="font-notoSerif font-medium text-3xl break-all ">Title</h3>
+							<h4 class="font-notoSerif font-medium text-xl break-all ">Company</h4>
+							<div class="font-notoSerif font-medium text-lg break-all ">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
 								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
@@ -73,12 +73,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 						
-						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						<li class="
 						hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
 						transition duration-200">
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">
+							<h3 class="font-notoSerif font-medium text-3xl break-all ">Title</h3>
+							<h4 class="font-notoSerif font-medium text-xl break-all ">Company</h4>
+							<div class="font-notoSerif font-medium text-lg break-all ">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
 								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
@@ -87,18 +87,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 							</div>
 						</li>
 					</ol>
-					<p class="font-notoSerif font-medium text-lg">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-						Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-						massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-						nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-						auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
-						Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
-						massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
-						nec maximus nunc sagittis. Sed eget neque magna. Ut quis feugiat justo, a gravida ligula. In 
-						auctor dolor sed ex efficitur pulvinar. Praesent sit amet massa 
-					</p>
 				</div>
 			</div>
 			<!-- Filler -->
@@ -132,12 +120,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					<ol>
 						<!-- very wacky, check the checked answer. Namely native child selectors: 
 						https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
-						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						<li class="
 						hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
 						transition duration-200">
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">
+							<h3 class="font-notoSerif font-medium text-3xl break-all ">Title</h3>
+							<h4 class="font-notoSerif font-medium text-xl break-all ">Company</h4>
+							<div class="font-notoSerif font-medium text-lg break-all ">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
 								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
@@ -148,12 +136,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 
-						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						<li class="
 						hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
 						transition duration-200">
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">
+							<h3 class="font-notoSerif font-medium text-3xl break-all ">Title</h3>
+							<h4 class="font-notoSerif font-medium text-3xl break-all ">Company</h4>
+							<div class="font-notoSerif font-medium text-lg break-all ">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
 								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
@@ -164,12 +152,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 						
-						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5
+						<li class="
 						hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
 						transition duration-200">
-							<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all">
+							<h3 class="font-notoSerif font-medium text-3xl break-all ">Title</h3>
+							<h4 class="font-notoSerif font-medium text-xl break-all ">Company</h4>
+							<div class="font-notoSerif font-medium text-lg break-all">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
 								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
@@ -224,12 +212,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					<ol>
 						<!-- very wacky, check the checked answer. Namely native child selectors: 
 						https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
-						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5 
+						<li class="
 						hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md 
 						transition duration-200">
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">
+							<h3 class="font-notoSerif font-medium text-3xl break-all ">Title</h3>
+							<h4 class="font-notoSerif font-medium text-xl break-all ">Company</h4>
+							<div class="font-notoSerif font-medium text-lg break-all ">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
 								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
@@ -240,12 +228,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 
-						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5 
+						<li class="
 						hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md
 						transition duration-200">
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all ">
+							<h3 class="font-notoSerif font-medium text-3xl break-all ">Title</h3>
+							<h4 class="font-notoSerif font-medium text-xl break-all ">Company</h4>
+							<div class="font-notoSerif font-medium text-lg break-all ">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
 								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
@@ -256,12 +244,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 						
-						<li class="grid grid-cols-[1fr_1fr_3fr] my-4 p-10 rounded-3xl gap-x-5 
+						<li class="
 						hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md 
 						transition duration-200">
-							<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all">bruh</div>
-							<div class="font-notoSerif font-medium text-lg  break-all">
+							<h3 class="font-notoSerif font-medium text-3xl break-all ">Title</h3>
+							<h4 class="font-notoSerif font-medium text-xl break-all ">Company</h4>
+							<div class="font-notoSerif font-medium text-lg break-all">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 								Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
 								massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 

@@ -19,7 +19,7 @@ const Carousel = () => {
         around the world, celebrated for its distinct mix of horror, sci-fi and psychedelic erotica. But when the 49-year-old agrees to take a call at home in Tokyo, the idea of talking about himself or his art \
         causes clear discomfort. Little is known about his life and he speaks in halted sentences: one-line answers that convey an air of secrecy.", src: "src/assets/compressed-article-placeholders/shintaro-kago-2.webp",
         alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-    {id: 5, title: "Title 6", description: "As the heat rises during the summer months, so too can the emotional temperature – something many celebrated film-makers have captured with their \
+    {id: 5, title: "LLMs are only stupid if you are. No, I’m not talking about proompting", description: "As the heat rises during the summer months, so too can the emotional temperature – something many celebrated film-makers have captured with their \
         depictions of intense seasonal flings. bruh what da hell", src: "src/assets/compressed-article-placeholders/japanese-city.webp", 
         alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}];
 
@@ -142,7 +142,8 @@ const Carousel = () => {
                 <div className="flex justify-start col-[1_/_2] row-[1_/_2] mb-5">
                     <button className="flex justify-center items-center self-center w-12 h-12 bg-black z-10 ml-5 rounded-full" onClick={scrollPrev}>
                     <svg width="25px" height="25px" viewBox="0 0 24 24">
-                        <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" stroke="white" fill="white" style={{transform:"scale(-1, 1) translate(-100%, 0px)"}}/>
+                        <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" 
+                        stroke="white" fill="white" style={{transform:"scale(-1, 1) translate(-100%, 0px)"}}/>
                         {/* transform="scale(-1 1) translate(-800px 0px)" style={{transform:"scale(-1, 1) translate(-40px, 0px)"}}*/}
                     </svg>
                     </button>

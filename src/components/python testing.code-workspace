@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../test files/python testing"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../../../../../Year 4 Semester 1/Principles of Networking/project/ASCII-battleship-python"
+		},
+		{
+			"path": "../../../../moodle-quiz-filler"
+		},
+		{
+			"path": "../../../../../Advent-of-Code"
+		},
+		{
+			"path": "../../../../../../../Year 4 Semester 1/Computer Architecture/project 3"
+		},
+		{
+			"path": "../../../../../../../Year 3 Semester 2/Org of Prog Lang/Final Project"
+		},
+		{
+			"path": "../../../../../../../Year 3 Semester 2/Org of Prog Lang/TS Lox Interpreter"
+		},
+		{
+			"path": "../../../../../../college/Year 4 Semester 2/Developer tools/Assignments/yUML diagram"
+		},
+		{
+			"path": "../../../../../../../Year 3 Semester 2/Operating Systems/OS-Project"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Personal Website"
+	}
+}

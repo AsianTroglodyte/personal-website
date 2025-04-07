@@ -16,7 +16,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
     <body class="flex flex-col">
 		<Header isLandingPage={false} BGColor="PWBlack" color="PWWhite"></Header>
 		<main class="mt-32 w-100vw flex flex-col items-center" >
-			<div class="flex w-full flex-row gap-10 justify-center p-16">
+			<div class="flex w-full max-w-[1000px] sm:flex-row flex-col-reverse justify-center sm:gap-10 px-16 py-5">
 				<div class="flex-col ">
 					<h1 class="text-PWWhite text-8xl font-notoSerifDisplay font-black"> Karan Swansi</h1>
 					<h3 class="text-PWWhite text-3xl font-notoSerifDisplay font-semibold">Full Stack Web Developer</h3>
@@ -25,7 +25,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<img src="src/assets/lisa-harvey-pfp.png" class="w-44 h-44 round" alt="PFP"  >
 			</div>
 			<!-- short personal description -->
-			<p class="text-PWWhite w-full p-16 font-notoSerif font-medium text-lg">
+			<p class="text-PWWhite w-full max-w-[1000px] px-16 pt-5 pb-10 font-notoSerif font-medium text-lg">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat ac nunc id rutrum. 
 				Curabitur aliquam interdum orci eget eleifend. Nulla condimentum ultrices venenatis. Maecenas
 				massa orci, tempor ac erat a, lobortis placerat sem. Vivamus sodales est sit amet felis rutrum, 
@@ -36,13 +36,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			<!-- Experience -->
 			<!-- NOTE - first div is basically the background. this is for setting max-width for content -->
 			<div class="bg-PWRed-600 w-full flex justify-center">
-				<div class="max-w-[1200px] flex flex-col gap-20 justify-center w-full p-16">
+				<div class="max-w-[1000px] flex flex-col gap-20 justify-center w-full p-16">
 					<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Experience</h2>
 					<ol class="flex flex-col gap-5">
 						<!-- very wacky, check the checked answer. Namely native child selectors: 
 						https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
-						<li class="flex flex-col gap-2 hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
-						transition duration-200">
+						<!-- hover:text-PWWhite hover:bg-PWRed-500 -->
+						<li class="flex flex-col gap-2">
 							<h3 class="font-notoSerif font-medium text-3xl break-all">Title</h3>
 							<h4 class="font-notoSerif font-medium text-xl break-all">Company</h4>
 							<div class="font-notoSerif font-medium text-lg break-all">
@@ -56,8 +56,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 
-						<li class="flex flex-col gap-2 hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
-						transition duration-200">
+						<li class="flex flex-col gap-2">
 							<h3 class="font-notoSerif font-medium text-3xl break-all">Title</h3>
 							<h4 class="font-notoSerif font-medium text-xl break-all">Company</h4>
 							<div class="font-notoSerif font-medium text-lg  break-all ">
@@ -71,8 +70,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 						
-						<li class="flex flex-col gap-2 hover:text-PWWhite hover:bg-PWRed-500 hover:drop-shadow-md 
-						transition duration-200">
+						<li class="flex flex-col gap-2">
 							<h3 class="font-notoSerif font-medium text-3xl break-all">Title</h3>
 							<h4 class="font-notoSerif font-medium text-xl break-all">Company</h4>
 							<div class="font-notoSerif font-medium text-lg  break-all ">
@@ -124,13 +122,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			<!-- Projects -->
 			<!-- NOTE - first div is basically the background. this is for setting max-width for content -->
 			<div class="bg-PWBlue-600 w-full flex justify-center">
-				<div class="max-w-[1200px] flex flex-col gap-20 justify-center w-full p-16">
+				<div class="max-w-[1000px] flex flex-col gap-20 justify-center w-full p-16">
 					<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Projects</h2>
 					<ol class="flex flex-col gap-5">
 						<!-- very wacky, check the checked answer. Namely native child selectors: 
 						https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
-						<li class="flex flex-col gap-2 hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
-						transition duration-200">
+						<!-- hover:text-PWWhite hover:bg-PWBlue-500 -->
+						<li class="flex flex-col gap-2">
 							<h3 class="font-notoSerif font-medium text-3xl break-all">Title</h3>
 							<h4 class="font-notoSerif font-medium text-xl break-all">Company</h4>
 							<div class="font-notoSerif font-medium text-lg  break-all ">
@@ -144,8 +142,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 
-						<li class="flex flex-col gap-2 hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
-						transition duration-200">
+						<li class="flex flex-col gap-2">
 							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
 							<div class="font-notoSerif font-medium text-lg  break-all ">bruh</div>
 							<div class="font-notoSerif font-medium text-lg  break-all ">
@@ -159,8 +156,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 						
-						<li class="flex flex-col gap-2 hover:text-PWWhite hover:bg-PWBlue-500 hover:drop-shadow-md
-						transition duration-200">
+						<li class="flex flex-col gap-2">
 							<h3 class="font-notoSerif font-medium text-3xl break-all">Title</h3>
 							<h4 class="font-notoSerif font-medium text-xl break-all">Company</h4>
 							<div class="font-notoSerif font-medium text-lg  break-all">
@@ -213,13 +209,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			<!-- Education -->
 			<!-- NOTE - first div is basically the background. this is for setting max-width for content -->
 			<div class="bg-PWGreen-500 w-full flex justify-center">
-				<div class="max-w-[1200px] flex flex-col gap-20 justify-center w-full p-16">
+				<div class="max-w-[1000px] flex flex-col gap-20 justify-center w-full p-16">
 					<h2 class="text-PWBlack font-notoSerifDisplay text-7xl font-semibold">Education</h2>
 					<ol class="flex flex-col gap-5">
 						<!-- very wacky, check the checked answer. Namely native child selectors: 
 						https://stackoverflow.com/questions/67119992/how-to-access-all-the-direct-children-of-a-div-in-tailwindcss -->
-						<li class="flex flex-col gap-2 hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md 
-						transition duration-200">
+						<!-- hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md transition duration-200 -->
+						<li class="flex flex-col gap-2">
 							<h3 class="font-notoSerif font-medium text-3xl break-all">Title</h3>
 							<h4 class="font-notoSerif font-medium text-xl break-all">Company</h4>
 							<div class="font-notoSerif font-medium text-lg  break-all ">
@@ -233,8 +229,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 
-						<li class="flex flex-col gap-2 hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md
-						transition duration-200">
+						<li class="flex flex-col gap-2">
 							<h3 class="font-notoSerif font-medium text-3xl break-all">Title</h3>
 							<h4 class="font-notoSerif font-medium text-xl break-all">Company</h4>
 							<div class="font-notoSerif font-medium text-lg  break-all ">
@@ -248,8 +243,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 						<hr class="col-span-3 border-top-[2px] border-PWBlack">
 						
-						<li class="flex flex-col gap-2 hover:text-PWWhite hover:bg-PWGreen-400 hover:drop-shadow-md 
-						transition duration-200">
+						<li class="flex flex-col gap-2">
 							<h3 class="font-notoSerif font-medium text-3xl break-all">Title</h3>
 							<h4 class="font-notoSerif font-medium text-xl break-all">Company</h4>
 							<div class="font-notoSerif font-medium text-lg  break-all">

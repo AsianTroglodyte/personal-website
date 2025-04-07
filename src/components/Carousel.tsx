@@ -19,8 +19,8 @@ const Carousel = () => {
         around the world, celebrated for its distinct mix of horror, sci-fi and psychedelic erotica. But when the 49-year-old agrees to take a call at home in Tokyo, the idea of talking about himself or his art \
         causes clear discomfort. Little is known about his life and he speaks in halted sentences: one-line answers that convey an air of secrecy.", src: "src/assets/compressed-article-placeholders/shintaro-kago-2.webp",
         alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-    {id: 5, title: "LLMs are only stupid if you are. No, I’m not talking about proompting", description: "As the heat rises during the summer months, so too can the emotional temperature – something many celebrated film-makers have captured with their \
-        depictions of intense seasonal flings. bruh what da hell", src: "src/assets/compressed-article-placeholders/japanese-city.webp", 
+    {id: 5, title: "The troubling ways a heatwave can warp your mind", description: "A bit of sunshine can cause many of us to dream of ice cream, sunbathing and beaches, but warm weather can also make us violent, grumpy and depressed. Why?", src: "src/assets/compressed-article-placeholders/japanese-city.webp", 
+
         alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}];
 
 

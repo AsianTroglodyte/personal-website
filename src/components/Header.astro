@@ -1,6 +1,7 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import DropdownMenu from './DropdownMenu.tsx';
+// import DropdownMenu from './DropdownMenu.tsx';
+import DropdownMenu from './DropdownMenu.astro';
 
 // replace with Astro.props
 interface Props {
@@ -37,10 +38,9 @@ const image_classes = (color === "PWWhite")
 
 ---
 <!-- conditionalHeaderClasses is for absolute positioning which conveniently prevents scroll bar on Landing page: duration-300 -->
-<header class={" h-8 font-notoSerif fixed z-50 w-full " 
-+ " text-" + color + " bg-" + BGColor + " " + conditionalHeaderClasses} style="top: 0px">
+<header class={` h-8 font-notoSerif fixed z-50 w-full text-${color} bg-${BGColor}  ${conditionalHeaderClasses}`} style="top: 0px">
 	<!-- is there a way to do this without inline styling? -->
-	<nav class={"h-full w-full " + conditionalNavClasses + " "} >
+	<nav class={`h-full w-full  ${conditionalNavClasses}`} >
 		<!-- removing bg-color for as header handles it + "bg-" + BGColor -->
 		{!isLandingPage && 
 			<div class={"pt-1 px-1 relative"}>
@@ -57,7 +57,7 @@ const image_classes = (color === "PWWhite")
 		{/* for links to all socials */}
 		<div class="hidden sm:flex flex-row justify-end p-1 gap-2">
 			<a href="https://m.webtoo.ls/@astro" target="_blank">
-				<svg class={fill_class+ "  z-50 "} viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
+				<svg class={`fill-${color}  z-50 `} viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
 					<path
 						d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 
 						10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 
@@ -69,7 +69,7 @@ const image_classes = (color === "PWWhite")
 				</svg>
 			</a>
 			<a href="https://x.com/AsianTroglodtye" target="_blank">
-				<svg class={fill_class} viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
+				<svg class={`fill-${color}  z-50 `} viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
 					<path
 						d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 
 						1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 
@@ -79,7 +79,7 @@ const image_classes = (color === "PWWhite")
 				</svg>
 			</a>
 			<a href="https://github.com/AsianTroglodyte" target="_blank">
-				<svg class={fill_class} viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
+				<svg class={`fill-${color}  z-50 `} viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
 					<path
 						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 
 						1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 
@@ -90,7 +90,7 @@ const image_classes = (color === "PWWhite")
 			</a>
 		</div>
 		<div class="sm:hidden flex justify-end p-1" >
-			<DropdownMenu client:load color={color} BGColor={BGColor}/>
+			<DropdownMenu color={color} BGColor={BGColor}></DropdownMenu>
 		</div>
 	</nav>
 </header>
@@ -101,23 +101,30 @@ const image_classes = (color === "PWWhite")
 		// keep in mind that we must appease TS
 		let header = document.querySelector<HTMLElement>("header");
 		if (!header) {
-			return
+			return;
 		}
 		let currentScrollPos = window.scrollY;
 
+		// querying the value of the css top attribute to current position of header
 		let headerTopPosNum = Number(header.style.top.match(/[-+]?\d*\.?\d+/g) ?? ["10"][0]); // square up on regex if havent
 
-		// console.log("headerTopPosNum: ", headerTopPosNum, "currentScrollPos: ", currentScrollPos, "prevScrollPos: ", prevScrollPos);
-
+		// if scrolling down (prevScrollPos > currentScrollPos) then change position by difference between prevScrollPos and currentScrollPos
 		if (prevScrollPos > currentScrollPos) {
+			// we take current top positioning and add it by how much we scrolled. 
+			// danger of header being too low. So, we check if the new possible pos will be farther down than top:0px
+			// if it is then we just set the top directly to 0x to prevent the pos from going to low
 			if (0 > (headerTopPosNum + (prevScrollPos - currentScrollPos))) {
 				header.style.top = `${(headerTopPosNum + (prevScrollPos - currentScrollPos))}px`;
 			}
 			else {
 				header.style.top = "0px"
 			}
-		} else {
-			// we take current top positioning and minus it by how much we scrolled
+		} 
+		// if we scroll up then the header must go down
+		else {
+			// we take current top positioning and minus it by how much we scrolled. 
+			// danger of header being too high. So, we check if the new possible pos will be farther up than top:-50px
+			// if it is then we just set the top directly to -50px to prevent the pos from going to high up 
 			if (-50 < (headerTopPosNum - (currentScrollPos - prevScrollPos)))
 			{
 				header.style.top = `${(headerTopPosNum - (currentScrollPos - prevScrollPos))}px`;
@@ -126,6 +133,7 @@ const image_classes = (color === "PWWhite")
 				header.style.top = "-50px"
 			}
 		}
+		// when the scroll event fires again in the future our currentScrollPos will, of course, be our prevous scroll position
 		prevScrollPos = currentScrollPos;
 	}
 

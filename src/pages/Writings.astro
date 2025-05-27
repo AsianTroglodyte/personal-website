@@ -1,7 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import BaseHead from"../components/BaseHead.astro";
-import Carousel from "../components/Carousel.tsx";
+import Carousel from "../components/Carousel.astro";
 
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts.ts';
@@ -36,8 +36,8 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
     <!-- body requires flex and flex-col to ensure that margins do not collapse -->
-    <body class="flex flex-col">
-        <Header isLandingPage={false} BGColor="PWWhite" color='PWBlack'></Header>
+    <body class="flex flex-col mb-5">
+        <Header isLandingPage={false} BGColor="PWWhite" color='PWBlack' />
         <main class="flex flex-col items-center justify-center mt-10">
             <h1 class="font-notoSerifDisplay text-7xl font-black text-PWBlack mx-5 text-center">
                 Karan Swansi's <span class="text-PWBlue-500">Writings</span>
@@ -47,7 +47,7 @@ const articleData = [{id: 0, title: "Is it still worth it to learn to code.", de
                 Stuff I'm Most Proud of:
             </h2>
         
-            <Carousel client:load/>
+            <Carousel />
         
             <!-- articles -->
             <h2 class="font-notoSerifDisplay text-5xl font-black mt-10 text-PWBlack mx-5 text-center">

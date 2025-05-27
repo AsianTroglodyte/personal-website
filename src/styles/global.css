@@ -55,6 +55,11 @@
 	gap: 1rem;
 }
 
+p {
+	text-rendering: optimizeLegibility;
+  	-webkit-font-smoothing: antialiased; /* For Webkit browsers like Safari */
+  	-moz-osx-font-smoothing: grayscale; /* For Firefox on macOS */
+}
 
 .description_container {
 	container-type: size;

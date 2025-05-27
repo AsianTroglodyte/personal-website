@@ -1,0 +1,59 @@
+---
+import Tag from "./Tag.astro";
+
+interface UserProps {
+    carouselDatum: {
+        id: number, 
+        title: string, 
+        description: string, 
+        src: string, 
+        alt: string, 
+        tags: {id: number, tagName:string}[]
+    }
+}
+const {
+    carouselDatum: {
+        id = 0,
+        title = "bruh",
+        description = "bruh",
+        src = "bruh",
+        alt = "bruh",
+        tags = [{id: 0, tagName: "bruh"}]
+    }
+} = Astro.props as UserProps
+---
+<article class="flex justify-center content-center h-[36rem]
+    embla-slide-number featured">
+    {/* Thumbnail. h & w need to be full as img is a container for the img. This makes object-cover work grid-cols-[minmax(_18rem,18rem)*/}
+    {/* title description thingy. Max  */}
+    <div class="card grid grid-rows-[minmax(_0rem,_22rem)_minmax(_0rem,_16rem)] grid-cols-[minmax(_20rem,_20rem)] bg-white rounded-md 
+    font-notoSerif ">
+        <img class="object-cover h-full w-full rounded-t-md" alt={alt} src={src}></img>
+        <div class="flex flex-col p-4 justify-between">
+            <div class="flex flex-col grow gap-3 overflow-hidden">
+                {/* advanced-truncation is for truncating and putting ellipses on overflowing text content. ELLIPSES HANDLED ON global.css
+                interesting stuff for following elements to allow growing and growing and shrinking: https://codepen.io/Karan-Swansi-No/pen/RwzyrMv*/}
+                <h6 class="title-text text-base font-bold max-h-[4.5rem] overflow-hidden advanced-trunction-3 shrink-0">
+                    <a class="font-notoSerif after:absolute after:inset-0 focus:outline-none" href="/AboutMe">
+                        {title}
+                    </a>
+                </h6> 
+                {/* within div because we are using container queries to apply truncation */}
+                <div class="description_container flex-col grow shrink">
+                    <p class="description_text text-base overflow-hidden grow-0 shrink">
+                        {description}
+                    </p>
+                </div>
+            </div>
+            {/* consider adding datetime attribute for SEO*/}
+            <time class="font-notoSerif mb-3">Date: July 3, 2002</time>
+            <div class="flex flex-row gap-1">
+                {
+                    tags.map((tagData) => 
+                        <Tag tagData={tagData}/>
+                    )
+                }
+            </div>
+        </div>
+    </div>
+</article>

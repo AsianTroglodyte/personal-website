@@ -2,7 +2,7 @@
 import Header from "../components/Header.astro";
 import BaseHead from"../components/BaseHead.astro";
 import ArticleCard from "../components/ArticleCard.astro";
-import Carousel from "../components/Carousel.tsx";
+import Carousel from "../components/Carousel.astro";
 import Masonry from "../components/Masonry.astro"
 
 
@@ -77,7 +77,7 @@ const articleDataScrambled2 = [
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
     <!-- body requires flex and flex-col to ensure that margins do not collapse -->
-    <body class="flex flex-col">
+    <body class="flex flex-col  mb-5">
         <Header isLandingPage={false} BGColor="PWWhite" color='PWBlack'></Header>
         <main class="flex flex-col items-center justify-center mt-10">
             <h1 class="font-notoSerifDisplay text-7xl font-black text-PWBlack mx-5 text-center">
@@ -94,7 +94,7 @@ const articleDataScrambled2 = [
                 https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
             -->
             <!-- client:load -->
-            <Carousel client:load/>
+            <Carousel />
 
             <!-- articles -->
             <h2 class="font-notoSerifDisplay text-5xl font-black mt-10 text-PWBlack mx-5 text-center">

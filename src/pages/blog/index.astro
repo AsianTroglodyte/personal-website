@@ -16,7 +16,7 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			main {
+			/* main {
 				width: 960px;
 			}
 			ul {
@@ -82,11 +82,11 @@ const posts = (await getCollection('blog')).sort(
 				ul li:first-child .title {
 					font-size: 1.563em;
 				}
-			}
+			} */
 		</style>
 	</head>
 	<body>
-		<Header isLandingPage = {true} color="#" BGColor="#"/>
+		<Header isLandingPage = {false} color="PWBlack" BGColor="PWWhite"/>
 		<main>
 			<section>
 				<ul>

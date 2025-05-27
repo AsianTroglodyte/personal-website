@@ -1,0 +1,152 @@
+---
+import FeaturedArticleCard from "./FeaturedArticleCard.astro";
+
+// used for carousel scaling (very scary)
+
+const carouselData = [{id: 0, title: "Title 1", description: "description 1", src: "src/assets/compressed-article-placeholders/snowy-jap-wp.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+{id: 1, title: "Title 2", description: "description 1", src: "src/assets/compressed-article-placeholders/shintaro-kago-1.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+{id: 2, title: "Porter Robinson - Hollowheart ft. Amy Millan (From the Worlds 10th Anniversary Edition)", description: "description 1", src: "src/assets/compressed-article-placeholders/memes-wp-1.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+{id: 3, title: "Title 4:  How long should titles and descriptions really be? That is the question that this article will answer", description: "Description 4: How long should titles and descriptions be \
+    neither should too long. Titles should take a maximum of two lines anddescriptions should take a maximum of three in any case both should be successfully truncated with an ellipses when they are too long", 
+    src: "src/assets/compressed-article-placeholders/rin-phone-wp.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+{id: 4, title: "The wonderfully weird world of Shintaro Kago, manga outsider", description: "Shintaro Kago doesn’t really do interviews outside of Japan. The illustrator’s work has garnered a cult following \
+    around the world, celebrated for its distinct mix of horror, sci-fi and psychedelic erotica. But when the 49-year-old agrees to take a call at home in Tokyo, the idea of talking about himself or his art \
+    causes clear discomfort. Little is known about his life and he speaks in halted sentences: one-line answers that convey an air of secrecy.", src: "src/assets/compressed-article-placeholders/shintaro-kago-2.webp",
+    alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
+{id: 5, title: "The troubling ways a heatwave can warp your mind", description: "A bit of sunshine can cause many of us to dream of ice cream, sunbathing and beaches, but warm weather can also make us violent, grumpy and depressed. Why?", 
+src: "src/assets/compressed-article-placeholders/japanese-city.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}];
+const CarouselMaxLength = ((carouselData.length - 1) * 20).toString() + "rem";
+
+---
+<div class="w-full" style={{maxWidth: CarouselMaxLength}}>
+    {/* grid is for overlapping buttons (isLoading? "hidden":)*/}
+    <div class={"w-full grid grid-cols-[1fr_1fr] embla hidden"}>
+        <!-- embla part -->
+        <div class="overflow-hidden w-full h-[42rem] col-[1_/_3] row-[1_/_2] embla__viewport">
+            <!-- viewport -->
+            <div class="flex mt-5 col-[1_/_4] [&>*]:m-2 embla__container" >
+            {/* using center for the alignment is very weird as it reformatted on screen. align: start is used instead*/
+                    carouselData.map((carouselDatum) =>
+                        <FeaturedArticleCard carouselDatum={carouselDatum}/>
+                    )
+                    }
+            </div>
+        </div>
+        {/* using absolute position is a bit wonky as it will change z-index and thus interactivity
+        of the carousel. positioning using flex and margin is required. for SVG, consider changing svg
+        d attribute so that center is not necessary*/}
+        <div class="flex justify-start col-[1_/_2] row-[1_/_2] mb-5">
+            <button class="flex justify-center items-center self-center w-12 h-12 bg-black z-10 ml-5 rounded-full embla__button--prev">
+            <svg width="25px" height="25px" viewBox="0 0 24 24">
+                <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" 
+                stroke="white" fill="white" style={{transform:"scale(-1, 1) translate(-100%, 0px)"}}/>
+                {/* transform="scale(-1 1) translate(-800px 0px)" style={{transform:"scale(-1, 1) translate(-40px, 0px)"}}*/}
+            </svg>
+            </button>
+        </div>
+        <div class="flex justify-end col-[2_/_3] row-[1_/_2] mb-5">
+            <button class="flex justify-center items-center self-center w-12 h-12 bg-black z-10 mr-5 rounded-full embla__button--next">
+            <svg width="25px" height="25px" viewBox="0 0 24 24">
+                <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" stroke="white" fill="white"/>
+            </svg>
+            </button>
+        </div>
+    </div>
+    <div class={"flex content-align justify-center placeholder"}>
+        <svg width="250" height="42rem" >
+            <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
+            </rect>
+            <rect x="50" y="291" width="45" height="90"  rx="5" ry="5">
+            </rect>
+            <rect x="100" y="286" width="50" height="100" rx="5" ry="5">
+            </rect>
+            <rect x="155" y="291" width="45" height="90" rx="5" ry="5">
+            </rect>
+            <rect x="205" y="296" width="40" height="80" rx="5" ry="5">
+            </rect>
+            <rect x="250" y="301" width="35" height="70" rx="5" ry="5">
+            </rect>
+        </svg>
+    </div>
+</div>
+
+<script >
+    // NOTE I don't quite understand the javascript code below. Maybe learn it later
+    // the carousel is hidden and a placeholder is in its place until all the carousel
+    // setup is executed. the placeholder is hidden first then the carousel is revealed
+    import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from 'embla-carousel';
+
+    const addTogglePrevNextBtnsActive = (
+        emblaApi : EmblaCarouselType, 
+        prevBtn: HTMLElement, 
+        nextBtn: HTMLElement): (() => void) => {
+            const togglePrevNextBtnsState = () => {
+                if (emblaApi.canScrollPrev()) prevBtn.removeAttribute('disabled');
+                else prevBtn.setAttribute('disabled', 'disabled');
+
+                if (emblaApi.canScrollNext()) nextBtn.removeAttribute('disabled');
+                else nextBtn.setAttribute('disabled', 'disabled');
+            }
+
+            emblaApi
+                .on('select', togglePrevNextBtnsState)
+                .on('init', togglePrevNextBtnsState)
+                .on('reInit', togglePrevNextBtnsState)
+
+            return () => {
+                prevBtn.removeAttribute('disabled');
+                nextBtn.removeAttribute('disabled');
+            }
+        }
+
+    const addPrevNextBtnsClickHandlers = (
+        emblaApi:EmblaCarouselType, 
+        prevBtn:HTMLElement, 
+        nextBtn:HTMLElement): (() => void) => {
+        const scrollPrev = (): void =>  {
+            emblaApi.scrollPrev();
+        }
+
+        const scrollNext = (): void =>  {
+            emblaApi.scrollNext();
+        }
+
+        prevBtn.addEventListener('click', scrollPrev, false);
+        nextBtn.addEventListener('click', scrollNext, false);
+
+        const removeTogglePrevNextBtnsActive = addTogglePrevNextBtnsActive(
+            emblaApi,
+            prevBtn,
+            nextBtn
+        )
+
+        return (): void => {
+            removeTogglePrevNextBtnsActive();
+            prevBtn.removeEventListener('click', scrollPrev, false);
+            nextBtn.removeEventListener('click', scrollNext, false);
+        }
+    }
+
+
+    const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true,  align:"center"};
+    const viewportNode = document.querySelector('.embla__viewport') as HTMLElement;
+    const prevBtnNode = document.querySelector('.embla__button--prev') as HTMLElement;
+    const nextBtnNode = document.querySelector('.embla__button--next') as HTMLElement;
+
+    const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
+
+    const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
+    emblaApi,
+    prevBtnNode,
+    nextBtnNode
+    )
+
+    emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+    // now that everything is properly formatted, we remove the suspence and reveal the embla node.
+    
+    const placeholder = document.querySelector('.placeholder') as HTMLElement;
+    placeholder.classList.add("hidden");
+    const emblaNode = document.querySelector('.embla') as HTMLElement;
+    emblaNode.classList.remove("hidden")
+
+</script>

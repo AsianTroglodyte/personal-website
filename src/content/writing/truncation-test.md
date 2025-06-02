@@ -1,9 +1,15 @@
 ---
-title: 'Third post'
-description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 22 2022'
-heroImage: '/blog-placeholder-2.jpg'
-alt: "smthing 'posed to be here"
+title: 'truncation test'
+description: 'This description is for ensuring that content is properly truncated when content would 
+    otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to 
+    the user that content has been cut off'
+updatedDate: 'July 3, 2002'
+pubDate: 'July 3, 2002'
+heroImage: 'kon.webp'
+alt: "bruh"
+tags: 
+    - "JS"
+    - "TS"
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.

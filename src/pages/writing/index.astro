@@ -1,0 +1,100 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+import Carousel from '../../components/Carousel.astro';
+import { type CollectionEntry } from 'astro:content';
+
+// import {type col}
+// import FormattedDate from '../../components/FormattedDate.astro';
+
+type WritingEntry = CollectionEntry<'writing'>;
+
+const writing : WritingEntry[] = (await getCollection('writing')).sort(
+	(a: WritingEntry, b: WritingEntry) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+
+
+// console.log(await getCollection("writing"));
+// type FeaturedWritingEntry = CollectionEntry<'featured_writing'>;
+// const featuredWriting : FeaturedWritingEntry[] = (await getCollection("featured_writing"));
+// console.log(writing[0]);
+
+// type FeaturedWritingEntry = CollectionEntry<'featured_writing'>;
+const featuredWriting : WritingEntry[] = writing.filter((writingEntry) => writingEntry.data.isFeatured == true);
+
+// for getting date
+const dateRegex = /\d\d\d\d-\d\d-\d\d/g;
+---
+
+<!doctype html>
+<html class="bg-PWWhite">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- Note that I am using display block -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=fallback" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=fallback" rel="stylesheet">
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <!-- body requires flex and flex-col to ensure that margins do not collapse -->
+    <body class="flex flex-col mb-5">
+        <Header isLandingPage={false} BGColor="PWWhite" color='PWBlack' />
+        <main class="flex flex-col items-center justify-center mt-10">
+            <!-- text-7xl -->
+            <h1 class="font-notoSerifDisplay text-[clamp(2rem,_20vw,_5rem)] text-6xl font-black text-PWBlack mx-5 text-center">
+                Karan Swansi's <span class="text-PWBlue-500">Writings</span>
+            </h1>
+            <!-- Featured -->
+            <h2 class="font-notoSerifDisplay text-4xl font-black mt-10 text-PWBlack mx-5 text-center">
+                Stuff I'm Most Proud of:
+            </h2>
+            <!-- {console.log(Array.isArray(featuredWriting), "bruh1")} -->
+            <Carousel carouselData={featuredWriting}/>
+        
+            <!-- articles -->
+            <h2 class="font-notoSerifDisplay text-4xl font-black mt-10 text-PWBlack mx-5 text-center">
+                All of my <span class="text-PWBlue-500">Writings</span>
+            </h2>
+            <p class="font-notoSerif text-xl font-bold mt-10 text-PWBlack text-center">Looking For Something?</p>
+            
+            <!-- search bar. -->
+            <!-- max-w calc because of funny inline element behavior with auto width made implementing
+            the margin fairly difficult. typically auto for block level element would handle this nicely while respecing margins,
+            border, and padding. Not worth fully understanding how to do without max-w calc atm -->
+            <input class="box-border h-12 my-5 w-[33rem] max-w-[calc(100%_-_2.5rem)] 
+            font-notoSerif appearance-none rounded self-center text-PWBlack"
+            type="search"> 
+                
+            </input>
+
+            <!-- article area  h-full -->
+            <section class="flex flex-col gap-3 w-fit max-w-[40rem] h-full mx-5 mt-10">
+                <!-- {console.log(Array.isArray(writing), "bruh2")} -->
+                {writing.map(((articleDatum : WritingEntry) =>
+                    // anchor tag is not most accessible, but best that I can do right now
+                    <a href={`/${articleDatum.collection}/${articleDatum.slug}/`} >
+                        <article class="flex flex-row p-2 rounded-xs
+                        hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)] duration-200
+                        focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">
+                            {/* using FormattedDate may be better because dates match locales, but my blog
+                            will largely be in English other languages do not concern me. I will probably keep it as is*/}
+                            <date datetime={articleDatum.data.pubDate.toISOString()} 
+                                class="shrink-0 w-24 font-notoSerif title-text text-base font-base">
+                                {(articleDatum.data.pubDate.toISOString().match(dateRegex) ?? ["no date"])[0]}
+
+                            </date>
+                            <div class="flex flex-col shrink">
+                                <h6 class="font-notoSerif advanced-truncation-1 title-text text-base font-bold min-w-[10rem]">
+                                    {articleDatum.data.title}
+                                </h6>
+                                <p class="font-notoSerif advanced-truncation-1 text-base"> {articleDatum.data.description}</p>
+                            </div>
+                        </article>
+                    </a>
+                ))}
+            </section>
+        </main>
+    </body>
+</html>

@@ -1,41 +1,49 @@
 ---
 import Tag from "./Tag.astro";
+// import {Image} from "astro:assets";
+import FormattedDate from "./FormattedDate.astro";
 
-interface Props  {
-    articleDatum: {    
-        id: number,
-        title: string,
-        description: string,
-        src: string,
-        date: string,
-        alt: string,
-        tags: {id: number, tagName: string}[]
-    }
-};
-
-const {id, title, description, src, date, alt, tags} = Astro.props.articleDatum;
+const {articleDatum} = Astro.props;
 // for hover styling stuff: https://inclusive-components.design/cards/, https://dev.to/hybrid_alex/better-css-outlines-with-box-shadows-1k7j
 // for accessible linking: https://inclusive-components.design/cards/,
----
 
-<article class="flex flex-col gap-3 rounded-xl p-1 relative duration-100 aspect-square
-hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)]
-focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">
-    <img class="object-cover w-full rounded-xl aspect-[16/9]" src={src} alt={alt}>
-    <h6 class="font-notoSerif text-md font-bold overflow-hidden advanced-truncation-2">
-        <a class="after:absolute after:inset-0 focus:outline-none" 
-        href="/AboutMe">
-            {title}
-        </a>
-    </h6>
-    <p class="font-notoSerif text-sm max-h-14 overflow-hidden advanced-truncation-2 " >
-        {date}
-    </p>
-    <div class="font-notoSerif flex flex-row gap-1 ">
-    {
-        tags.map((tagData) => 
-            <Tag tagData={tagData}/>
-        )
-    }
+---
+<!-- I want the height of the article card such that it is exactly the height needed to accommodate the content when the content 
+is at the maximum.  Implementing this more dynamically would be interesting and useful and I might do it later. However, 
+I'm not quite sure how to do that in a simple manner. Eyeballing is very simple and looks good enough.-->
+<article class="flex flex-col gap-3 rounded-xl p-1 relative duration-100 article
+    hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)]
+    focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">
+    <!-- the static file path hurts component's modularity. Change if used in a file with directory position that is breaking. -->
+    <img src={`../../src/assets/compressed-article-placeholders/${articleDatum.data.heroImage}`} 
+    class="object-cover w-full rounded-xl aspect-[16/9]" 
+    alt={articleDatum.data.alt}
+    loading="lazy"
+    decoding="async">
+    
+    <!-- magic height number here; maximum possible height of the non-image section of the article card - when
+    the title is two lines long. NOTE: For uniformity. 
+    can't figure out how to do dynamically without JS. So, if changes needed, look at card with 2 line long title.
+    then use dev tools to find height of the div below-->
+    <div class="flex flex-col gap-3 h-[118.4px]">
+        <div class="flex flex-col gap-3 ">
+            <h6 class="font-notoSerif text-md font-bold overflow-hidden advanced-truncation-2">
+                <a class="after:absolute after:inset-0 focus:outline-none" 
+                href={`/${articleDatum.collection}/${articleDatum.slug}/`}>
+                <!-- href={`/${collection}/${slug}`} -->
+                {articleDatum.data.title}
+            </a>
+        </h6>
+        <p class="font-notoSerif text-sm max-h-14 overflow-hidden advanced-truncation-2 " >
+            <FormattedDate date={articleDatum.data.pubDate}/>
+        </p>
+        <div class="font-notoSerif flex flex-row gap-1 ">
+            {
+            articleDatum.data.tags.map((tagName : string) => 
+                <Tag tagName={tagName}/>
+            )}
+        </div>
     </div>
+</div>
 </article>
+

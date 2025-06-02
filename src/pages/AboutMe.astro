@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import BaseHead from '../components/BaseHead.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import pfp from '../assets/lisa-harvey-pfp.webp';
 ---
 
 <html class="bg-PWBlack">
@@ -22,7 +23,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					<h3 class="text-PWWhite text-3xl font-notoSerifDisplay font-semibold">Full Stack Web Developer</h3>
 					<h3 class="text-PWWhite text-3xl font-notoSerifDisplay font-semibold">AI enthusiast</h3>
 				</div>
-				<img src="src/assets/lisa-harvey-pfp.png" class="w-44 h-44 round" alt="PFP"  >
+				<img src={pfp.src} class="w-44 h-44 round" alt="PFP" decoding="async" >
 			</div>
 			<!-- short personal description -->
 			<p class="text-PWWhite w-full max-w-[1000px] px-16 pt-5 pb-10 font-notoSerif font-medium text-lg">

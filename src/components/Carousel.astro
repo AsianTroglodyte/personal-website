@@ -1,35 +1,29 @@
 ---
 import FeaturedArticleCard from "./FeaturedArticleCard.astro";
+import {type CollectionEntry} from "astro:content";
 
-// used for carousel scaling (very scary)
+type WritingEntry = CollectionEntry<'writing'>;
+type PorfolioEntry = CollectionEntry<'portfolio'>;
+type FeaturedEntry = PorfolioEntry | WritingEntry
 
-const carouselData = [{id: 0, title: "Title 1", description: "description 1", src: "src/assets/compressed-article-placeholders/snowy-jap-wp.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-{id: 1, title: "Title 2", description: "description 1", src: "src/assets/compressed-article-placeholders/shintaro-kago-1.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-{id: 2, title: "Porter Robinson - Hollowheart ft. Amy Millan (From the Worlds 10th Anniversary Edition)", description: "description 1", src: "src/assets/compressed-article-placeholders/memes-wp-1.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-{id: 3, title: "Title 4:  How long should titles and descriptions really be? That is the question that this article will answer", description: "Description 4: How long should titles and descriptions be \
-    neither should too long. Titles should take a maximum of two lines anddescriptions should take a maximum of three in any case both should be successfully truncated with an ellipses when they are too long", 
-    src: "src/assets/compressed-article-placeholders/rin-phone-wp.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-{id: 4, title: "The wonderfully weird world of Shintaro Kago, manga outsider", description: "Shintaro Kago doesn’t really do interviews outside of Japan. The illustrator’s work has garnered a cult following \
-    around the world, celebrated for its distinct mix of horror, sci-fi and psychedelic erotica. But when the 49-year-old agrees to take a call at home in Tokyo, the idea of talking about himself or his art \
-    causes clear discomfort. Little is known about his life and he speaks in halted sentences: one-line answers that convey an air of secrecy.", src: "src/assets/compressed-article-placeholders/shintaro-kago-2.webp",
-    alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]},
-{id: 5, title: "The troubling ways a heatwave can warp your mind", description: "A bit of sunshine can cause many of us to dream of ice cream, sunbathing and beaches, but warm weather can also make us violent, grumpy and depressed. Why?", 
-src: "src/assets/compressed-article-placeholders/japanese-city.webp", alt: "smthing 'posed to be here", tags: [{id: 0, tagName:"JS"}, {id: 1, tagName:"TS"}]}];
-const CarouselMaxLength = ((carouselData.length - 1) * 20).toString() + "rem";
-
+const {carouselData} = Astro.props;
+// max length depending 
+const CarouselMaxLength = (((carouselData.length > 1 ? carouselData.length : 2) - 1) * 20).toString() + "rem"; 
 ---
+
 <div class="w-full" style={{maxWidth: CarouselMaxLength}}>
     {/* grid is for overlapping buttons (isLoading? "hidden":)*/}
     <div class={"w-full grid grid-cols-[1fr_1fr] embla hidden"}>
-        <!-- embla part -->
-        <div class="overflow-hidden w-full h-[42rem] col-[1_/_3] row-[1_/_2] embla__viewport">
+        <!-- embla part h-42-->
+        <div class="overflow-hidden w-full col-[1_/_3] row-[1_/_2] embla__viewport">
             <!-- viewport -->
             <div class="flex mt-5 col-[1_/_4] [&>*]:m-2 embla__container" >
+            <!-- {console.log(Array.isArray(carouselData), "bruh3")} -->
             {/* using center for the alignment is very weird as it reformatted on screen. align: start is used instead*/
-                    carouselData.map((carouselDatum) =>
-                        <FeaturedArticleCard carouselDatum={carouselDatum}/>
-                    )
-                    }
+                carouselData.map((carouselDatum : FeaturedEntry ) =>
+                    <FeaturedArticleCard featuredArticleData={carouselDatum}/>
+                )
+            }
             </div>
         </div>
         {/* using absolute position is a bit wonky as it will change z-index and thus interactivity
@@ -71,11 +65,20 @@ const CarouselMaxLength = ((carouselData.length - 1) * 20).toString() + "rem";
 </div>
 
 <script >
-    // NOTE I don't quite understand the javascript code below. Maybe learn it later
+    // NOTE: Below implements the carousel I don't quite understand the javascript code below.
     // the carousel is hidden and a placeholder is in its place until all the carousel
     // setup is executed. the placeholder is hidden first then the carousel is revealed
     import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from 'embla-carousel';
 
+    const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true};
+    const viewportNode = document.querySelector('.embla__viewport') as HTMLElement;
+    const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
+
+    const placeholder = document.querySelector('.placeholder') as HTMLElement;
+    placeholder.classList.add("hidden");
+    const emblaNode = document.querySelector('.embla') as HTMLElement;
+    emblaNode.classList.remove("hidden")
+    
     const addTogglePrevNextBtnsActive = (
         emblaApi : EmblaCarouselType, 
         prevBtn: HTMLElement, 
@@ -126,14 +129,11 @@ const CarouselMaxLength = ((carouselData.length - 1) * 20).toString() + "rem";
             nextBtn.removeEventListener('click', scrollNext, false);
         }
     }
-
-
-    const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true,  align:"center"};
-    const viewportNode = document.querySelector('.embla__viewport') as HTMLElement;
+    
+    
     const prevBtnNode = document.querySelector('.embla__button--prev') as HTMLElement;
     const nextBtnNode = document.querySelector('.embla__button--next') as HTMLElement;
-
-    const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
+    
 
     const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
     emblaApi,
@@ -144,9 +144,9 @@ const CarouselMaxLength = ((carouselData.length - 1) * 20).toString() + "rem";
     emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
     // now that everything is properly formatted, we remove the suspence and reveal the embla node.
     
-    const placeholder = document.querySelector('.placeholder') as HTMLElement;
-    placeholder.classList.add("hidden");
-    const emblaNode = document.querySelector('.embla') as HTMLElement;
-    emblaNode.classList.remove("hidden")
+
+
+
+    // we need make it so that the  
 
 </script>

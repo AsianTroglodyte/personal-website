@@ -1,0 +1,48 @@
+* [33mb693599[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m reworked react components into Astro components. Have not yet removed react as a dependency.
+*   [33m33d0fdc[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32marticle-page[m[33m)[m Merge pull request #2 from AsianTroglodyte/stylefixes
+[32m|[m[33m\[m  
+[32m|[m *   [33m63b7e31[m[33m ([m[1;31morigin/stylefixes[m[33m)[m Merge branch 'main' into stylefixes
+[32m|[m [34m|[m[32m\[m  
+[32m|[m [34m|[m[32m/[m  
+[32m|[m[32m/[m[34m|[m   
+* [34m|[m   [33m22f77b5[m Merge pull request #1 from AsianTroglodyte/about-rework
+[36m|[m[1;31m\[m [34m\[m  
+[36m|[m * [34m|[m [33m7e6d11c[m[33m ([m[1;31morigin/about-rework[m[33m)[m made definitive design changes. will be following through and improving on changes
+[36m|[m * [34m|[m [33md305e6c[m small changes before checkout
+[36m|[m * [34m|[m [33m254fa6c[m made preliminary changes to About Me page. This confirms the new direction the About Me page design will go
+[36m|[m [1;31m|[m * [33m859f1fc[m fixed content widths on About me page. fixed conditional style rendering for dropdown Menu on About me page as well
+[36m|[m [1;31m|[m * [33m2e3a0db[m made definitive design changes. will be following through and improving on changes
+[36m|[m [1;31m|[m * [33m1b42020[m small changes before checkout
+[36m|[m [1;31m|[m * [33m7ffb376[m made preliminary changes to About Me page. This confirms the new direction the About Me page design will go
+[36m|[m [1;31m|[m[36m/[m  
+[36m|[m[36m/[m[1;31m|[m   
+* [1;31m|[m [33m568c081[m Update README.md
+[1;31m|[m[1;31m/[m  
+* [33m665ae37[m finished adding smooth effects for header, and menu closing on scroll.
+* [33me28d369[m added dropdown menu that disappears when clicking away. added breakpoints for nav bar which reveals dropdown menu. added masonry to website. added proper writings section.
+* [33ma84d1a1[m added proper ellipses and growing and shrinking of paragraph to the featured article card
+* [33m3eda36f[m removed suspense animation and kept still object
+* [33m7748b25[m more or less created front end for Community Hub
+* [33mcc80c60[m fixed lagging loading of Carousel. Added proper loading icon
+* [33m267bf7b[m added accesibility features for articles cards, namely focus. Added styling for hover and focus as well.
+* [33m89926c2[m added dynamic height based clamps with JS For featured articles should add this for regular articles. Should maybe add feature where descriptions for featured articles are hidden an only expand on:hover
+* [33m70ce09e[m made articles area fully responsive
+* [33m251d210[m changed header so that it properly changes styling and content based on the type of page. Also added aspect ratio to ArticleCards for responsiveness.
+* [33mdd6b25c[m turned all the article cards into astro components, and made the page somewhat more responsive. Need to add breakpoints to blog area
+* [33m1288eac[m finished and decied layout method for feed and added embla for carousel functionality
+* [33m026be1f[m implemented: routing for 'about me'. Got some tailwind working. ToDo: at least route to other files. Style about me page
+* [33m8b5284d[m added harvey PNG
+* [33m9ed4407[m added miscellaneous file for stuff that is related to the file, but isn't exactly part of the website
+* [33meb00e64[m made sure to add react and tailwind. should figure out how to actually build the frontend before the trying out the backend. My head is already spinning.
+* [33m0f17266[m (Hopefully) last time I am creating this siht
+* [33m31c076b[m bruh
+*   [33m64ff6c6[m bruh
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [33m583ac21[m deleted working astro project because of errors
+[1;32m|[m * [33m7b5e7d8[m deleted working astro project because of errors
+[1;32m|[m * [33mba4653c[m deleted working astro project because of errors
+* [1;33m|[m [33me5ac7a8[m deleted working astro project because of errors
+[1;33m|[m[1;33m/[m  
+* [33mcabdaf1[m changed code structure
+* [33m5ca147e[m replaced framework with Astro.js
+* [33m3a41c28[m loaded react template. Is the yarn related file important?

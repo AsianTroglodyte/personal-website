@@ -7,7 +7,7 @@ interface Props {
 
 const {
     color = "bruh",
-	BGColor= "bruh",
+	BGColor = "bruh",
     ...rest
 } = Astro.props as Props;
 
@@ -26,8 +26,8 @@ const {
     <div class={`absolute right-0 flex flex-col internal-links justify-center gap-5 p-3 rounded-l-md shadow-[0px_0px_3px_1px_rgba(0,0,0,0.10)] dropDownMenu hidden bg-${BGColor}`}>
         <HeaderLink href="/" color={color}>Home </HeaderLink>
         <HeaderLink href="/AboutMe" color={color}>About</HeaderLink>
-        <HeaderLink href="/Writings" color={color}>Writings</HeaderLink>
-        <HeaderLink href="/Portfolio" color={color}>Portfolio</HeaderLink>
+        <HeaderLink href="/writing" color={color}>Writing</HeaderLink>
+        <HeaderLink href="/portfolio" color={color}>Portfolio</HeaderLink>
         <div class="flex gap-3"> 
             <a href="https://m.webtoo.ls/@astro" target="_blank">
                 <svg class={`fill-${color}" `} viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
@@ -65,7 +65,7 @@ const {
     </div>
 </div>
 
-<script lang="ts">
+<script lang="TS">
     // clicking and scrolling means that these event listener will be firing a lot.
     // button click revealing dropdown can use pure css: ":focus" and "#myButton:focus + #para" checkboxes also alternative, 
     // but colocating the logic is simpler and performance hit not substantial

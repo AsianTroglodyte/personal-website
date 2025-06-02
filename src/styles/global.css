@@ -17,7 +17,7 @@
 		clip-path: circle();
 	}
 
-	/* for cutting off content may creat */
+	/* for cutting off content may create */
 	.advanced-truncation-1 {
 		display: -webkit-box;
 		-webkit-line-clamp: 1; 
@@ -72,6 +72,23 @@ p {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }  */
+
+@container description_container (min-height: 0rem) {
+	.description_text {
+		display: none;
+		/* overflow: hidden; */
+	}
+}
+
+@container description_container (min-height: 1.5rem) {
+	.description_text {
+		display: -webkit-box;
+		-webkit-line-clamp: 1; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+}
+
 
 @container description_container (min-height: 3rem) {
 	.description_text {

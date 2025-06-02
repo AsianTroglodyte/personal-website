@@ -4,5 +4,7 @@
     "strictNullChecks": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
+    "noImplicitAny": true,
+    "strict": true,
   }
 }

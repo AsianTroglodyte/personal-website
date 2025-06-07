@@ -3,7 +3,7 @@ title: "Demystifying Quantum Computing: A Beginner’s Guide"
 description: "description 8" 
 pubDate: "February 22, 2018"
 updatedDate: "March 6, 2019"
-heroImage: "kita-bocchi-phone-wp-2.webp" 
+heroImage: "/src/assets/article-placeholders/kita-bocchi-phone-wp-2.png" 
 alt: "smthing 'posed to be here"
 tags: 
     - "JS"

@@ -3,7 +3,8 @@ title: "Want to Become a Better Writer? Copy the Work of Others"
 description: Even if you have no plans on becoming a professional writer, being able to write well is one of the most important skills you can have. From typing up memos at a corporation, to penning blog posts that accompany your online store, to writing grant proposals for your non-profit — it is a skill that will truly come in handy no matter what line of work you end up going into.
 pubDate: "April 4, 2016"
 updatedDate: "March 6, 2019"
-heroImage: "power-1.webp"
+# heroImage: "/src/assets/article-placeholders/power-1.webp"
+heroImage: "/src/assets/article-placeholders/power-1.jpg"
 alt: "smthing 'posed to be here"
 tags:
     - "JS" 

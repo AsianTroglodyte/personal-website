@@ -23,9 +23,12 @@ import pfp from "../../src/assets/lisa-harvey-pfp.webp";
 			<!-- make sure to possbly optimize it https://docs.astro.build/en/guides/images/-->
 			<img src={pfp.src} class="rounded-full w-44" alt="PFP"  >
 			<div class="flex flex-col gap-3">
-				<button class="text-xl font-notoSerif font-normal text-PWBlack text-left w-fit px-4" onclick="location.href = '/AboutMe'" >About Me</button>
-				<button class="text-xl font-notoSerif font-normal text-PWBlack text-left w-fit px-4" onclick="location.href = '/writing'">Writing</button>
-				<button class="text-xl font-notoSerif font-normal text-PWBlack text-left w-fit px-4" onclick="location.href = '/portfolio'">Portfolio</button>
+				<a class="text-xl font-notoSerif font-normal text-PWBlack text-left w-fit px-4" 
+				href="/AboutMe" data-astro-prefetch="load">About Me</a>
+				<a class="text-xl font-notoSerif font-normal text-PWBlack text-left w-fit px-4" 
+				href="/writing" data-astro-prefetch="load">Writing</a>
+				<a class="text-xl font-notoSerif font-normal text-PWBlack text-left w-fit px-4" 
+				href="/portfolio" data-astro-prefetch="load">Portfolio</a>
 			</div>
 		</main>
 		<!-- will need to possibly populate footer for SEO -->

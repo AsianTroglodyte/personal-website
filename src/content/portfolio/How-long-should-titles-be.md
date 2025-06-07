@@ -3,7 +3,8 @@ title: "How long should titles and descriptions really be? That is the question 
 description: "Description 4: How long should titles and descriptions be neither should too long. Titles should take a maximum of two lines anddescriptions should take a maximum of three in any case both should be successfully truncated with an ellipses when they are too long"
 pubDate: 'July 3, 2002'
 updatedDate: "March 6, 2019"
-heroImage: "rin-phone-wp.webp"
+# heroImage: "/src/assets/article-placeholders/rin-phone-wp.webp"
+heroImage: "/src/assets/article-placeholders/rin-phone-wp.png"
 alt: "smthing 'posed to be here"
 tags: 
     - "JS"

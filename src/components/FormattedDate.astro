@@ -7,7 +7,7 @@ const { date } = Astro.props;
 // console.log(typeof date);
 ---
 
-<time datetime={date.toISOString()}>
+<time datetime={date.toISOString()} >
 	{
 		date.toLocaleDateString('en-us', {
 			year: 'numeric',

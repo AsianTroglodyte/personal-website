@@ -1,11 +1,12 @@
 ---
 title: 'truncation test'
 description: 'This description is for ensuring that content is properly truncated when content would 
-    otherwise overflow and ruin the look of the card. Additionally it an ellipses is stuck at the end of truncation to make clear to 
+    otherwise overflow and ruin the look of the card. Additionally an ellipses is stuck at the end of truncation to make clear to 
     the user that content has been cut off'
 pubDate: 'July 3, 2002'
 updatedDate: "March 6, 2019"
-heroImage: 'kon.webp'
+# heroImage: 'kon.webp'
+heroImage: "/src/assets/article-placeholders/kon.jpg"
 alt: "bruh"
 tags: 
     - "JS"

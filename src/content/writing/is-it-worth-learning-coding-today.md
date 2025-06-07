@@ -3,7 +3,8 @@ title: 'Is it still worth it to learn to code'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'July 3, 2002'
 updatedDate: 'July 3, 2002'
-heroImage: 'shrimpson-boys.webp'
+# heroImage: 'shrimpson-boys.webp'
+heroImage: "/src/assets/article-placeholders/shrimpson-boys.png"
 alt: "bruh"
 tags: 
     - "JS"

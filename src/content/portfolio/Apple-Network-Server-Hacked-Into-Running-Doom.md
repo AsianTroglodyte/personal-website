@@ -3,7 +3,8 @@ title: "Harpoom: of course the Apple Network Server can be hacked into running D
 description: "Of course you can run Doom on a $10,000+ Apple server running IBM AIX. Of course you can. Well, you can now."
 pubDate: "March 6, 2019"
 updatedDate: "March 6, 2019"
-heroImage: "CSM-3-rooms.webp"
+# heroImage: "/src/assets/article-placeholders/CSM-3-rooms.webp"
+heroImage: "/src/assets/article-placeholders/CSM-3-rooms.jpg"
 alt: "smthing 'posed to be here"
 tags:
     - "JS"

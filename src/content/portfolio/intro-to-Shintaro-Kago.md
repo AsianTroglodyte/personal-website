@@ -3,7 +3,8 @@ title: "The wonderfully weird world of Shintaro Kago, manga outsider"
 description: "Shintaro Kago doesn’t really do interviews outside of Japan. The illustrator’s work has garnered a cult following around the world, celebrated for its distinct mix of horror, sci-fi and psychedelic erotica. But when the 49-year-old agrees to take a call at home in Tokyo, the idea of talking about himself or his art causes clear discomfort. Little is known about his life and he speaks in halted sentences: one-line answers that convey an air of secrecy."
 pubDate: 'July 3, 2002'
 updatedDate: "March 6, 2019"
-heroImage: "shintaro-kago-2.webp"
+# heroImage: "/src/assets/article-placeholders/shintaro-kago-2.webp"
+heroImage: "/src/assets/article-placeholders/shintaro-kago-2.jpg"
 alt: "smthing 'posed to be here"
 tags: 
     - "JS"

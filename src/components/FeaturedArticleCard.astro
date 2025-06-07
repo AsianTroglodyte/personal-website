@@ -1,20 +1,25 @@
 ---
 import Tag from "./Tag.astro";
 import FormattedDate from "./FormattedDate.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 
 const {featuredArticleData} = Astro.props;
-// console.log(featuredArticleData);
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/article-placeholders/*.{jpeg,jpg,png,gif,webp}')
+if (!images[featuredArticleData.data.heroImage]) throw new Error(`"${featuredArticleData.data.heroImage}" does not exist in glob: "/src/assets/article-placeholders/*.{jpeg,jpg,png,gif,webp}"`);
 ---
-<article class="flex justify-center content-center h-[clamp(22rem,80vh,36rem)]">
+<!-- using relative for pseudo content trick here: -->
+<article class="flex relative justify-center content-center h-[clamp(22rem,80vh,36rem)]">
     {/* Thumbnail. h & w need to be full as img is a container for the img. This makes object-cover work grid-cols-[minmax(_18rem,18rem)*/}
     {/* title description thingy. Max  _20rem*/}
     <div class="card grid grid-rows-[minmax(_0rem,_20rem)_minmax(_0rem,_16rem)] grid-cols-[minmax(_20rem,_20rem)] bg-white rounded-md 
     font-notoSerif ">
-        <img class="object-cover h-full w-full rounded-t-md" 
+        <!-- loading="lazy"
+        decoding="async" -->
+        <Image class="object-cover h-full w-full rounded-t-md" 
         alt={featuredArticleData.data.alt} 
-        src={`../../src/assets/compressed-article-placeholders/${featuredArticleData.data.heroImage}`}
-        loading="lazy"
-        decoding="async"></img>
+        src={images[featuredArticleData.data.heroImage]()}></Image>
         <div class="flex flex-col p-4 justify-between">
             <div class="flex flex-col grow gap-3 overflow-hidden">
                 {/* advanced-truncation is for truncating and putting ellipses on overflowing text content. ELLIPSES HANDLED ON global.css
@@ -22,7 +27,7 @@ const {featuredArticleData} = Astro.props;
                 <h6 class="title-text text-base font-bold max-h-[4.5rem] overflow-hidden advanced-trunction-3 shrink-0">
                     <a class="font-notoSerif after:absolute after:inset-0 focus:outline-none"
                         href={`/${featuredArticleData.collection}/${featuredArticleData.slug}/`}
-                        rel="prefetch">
+                        data-astro-prefetch="load">
                         {featuredArticleData.data.title}
                     </a>
                 </h6> 
@@ -34,10 +39,10 @@ const {featuredArticleData} = Astro.props;
                 </div>
             </div>
             {/* consider adding datetime attribute for SEO*/}
-            <date datetime={featuredArticleData.data.pubDate.toISOString()} class="font-notoSerif mb-3">
+            <date datetime={featuredArticleData.data.pubDate.toISOString()} class="mb-3">
                 <FormattedDate date={featuredArticleData.data.pubDate}/>
             </date>
-            <div class="flex flex-row gap-1">
+            <div class="flex flex-row text-am gap-1 text-sm">
                 {
                     featuredArticleData.data.tags.map((tagName : string) => 
                         <Tag tagName={tagName}/>

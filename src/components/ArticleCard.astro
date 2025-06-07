@@ -2,10 +2,16 @@
 import Tag from "./Tag.astro";
 // import {Image} from "astro:assets";
 import FormattedDate from "./FormattedDate.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 const {articleDatum} = Astro.props;
 // for hover styling stuff: https://inclusive-components.design/cards/, https://dev.to/hybrid_alex/better-css-outlines-with-box-shadows-1k7j
 // for accessible linking: https://inclusive-components.design/cards/,
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/article-placeholders/*.{jpeg,jpg,png,gif,webp}')
+
+if (!images[articleDatum.data.heroImage]) throw new Error(`"${articleDatum.data.heroImage}" does not exist in glob: "/src/assets/article-placeholders/*.{jpeg,jpg,png,gif,webp}"`);
 
 ---
 <!-- I want the height of the article card such that it is exactly the height needed to accommodate the content when the content 
@@ -15,12 +21,11 @@ I'm not quite sure how to do that in a simple manner. Eyeballing is very simple 
     hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)]
     focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">
     <!-- the static file path hurts component's modularity. Change if used in a file with directory position that is breaking. -->
-    <img src={`../../src/assets/compressed-article-placeholders/${articleDatum.data.heroImage}`} 
+    <Image src={images[articleDatum.data.heroImage]()} 
     class="object-cover w-full rounded-xl aspect-[16/9]" 
     alt={articleDatum.data.alt}
-    loading="lazy"
-    decoding="async">
-    
+    ></Image>
+
     <!-- magic height number here; maximum possible height of the non-image section of the article card - when
     the title is two lines long. NOTE: For uniformity. 
     can't figure out how to do dynamically without JS. So, if changes needed, look at card with 2 line long title.
@@ -29,7 +34,8 @@ I'm not quite sure how to do that in a simple manner. Eyeballing is very simple 
         <div class="flex flex-col gap-3 ">
             <h6 class="font-notoSerif text-md font-bold overflow-hidden advanced-truncation-2">
                 <a class="after:absolute after:inset-0 focus:outline-none" 
-                href={`/${articleDatum.collection}/${articleDatum.slug}/`}>
+                href={`/${articleDatum.collection}/${articleDatum.slug}/`}
+                data-astro-prefetch="hover">
                 <!-- href={`/${collection}/${slug}`} -->
                 {articleDatum.data.title}
             </a>
@@ -37,7 +43,7 @@ I'm not quite sure how to do that in a simple manner. Eyeballing is very simple 
         <p class="font-notoSerif text-sm max-h-14 overflow-hidden advanced-truncation-2 " >
             <FormattedDate date={articleDatum.data.pubDate}/>
         </p>
-        <div class="font-notoSerif flex flex-row gap-1 ">
+        <div class="font-notoSerif text-sm flex flex-row gap-1 ">
             {
             articleDatum.data.tags.map((tagName : string) => 
                 <Tag tagName={tagName}/>

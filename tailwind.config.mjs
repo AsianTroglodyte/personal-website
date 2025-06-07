@@ -5,7 +5,7 @@ export default {
 		extend: {
 			colors: {
 				PWBlack: '#141414',
-				PWWhite: "#F0F0F0",
+				PWWhite: "#fff7f4",
 				PWOlive: "#BCCABC",
 				PWRed: {
 					500: "#CE4B6D",
@@ -57,6 +57,10 @@ export default {
 				"sm": "650px",
 				"md": "1020px",
 				"lg": "1500px",
+				"txt-body-sm": "700px",
+				"txt-body-md": "960px",
+				"txt-body-lg": "1240px",
+				"txt-body-xl": "1500px",
 			},
 		},
 	},

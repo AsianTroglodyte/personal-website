@@ -3,7 +3,8 @@ title: "Title 2"
 description: "description 1"
 pubDate: 'July 3, 2002'
 updatedDate: "March 6, 2019"
-heroImage: "shintaro-kago-1.webp"
+# heroImage: "/src/assets/article-placeholders/shintaro-kago-1.webp"
+heroImage: "/src/assets/article-placeholders/shintaro-kago-1.jpg"
 alt: "smthing 'posed to be here"
 tags:
     - "JS"

@@ -47,7 +47,8 @@ const CarouselMaxLength = (((carouselData.length > 1 ? carouselData.length : 2) 
         </div>
     </div>
     <div class={"flex content-align justify-center placeholder"}>
-        <svg width="250" height="42rem" >
+        <!-- height is must be exactly 38.25 to prevent layout shifts once the carousel is revealed -->
+        <svg width="250" height="38.25rem" >
             <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
             </rect>
             <rect x="50" y="291" width="45" height="90"  rx="5" ry="5">
@@ -69,7 +70,7 @@ const CarouselMaxLength = (((carouselData.length > 1 ? carouselData.length : 2) 
     // the carousel is hidden and a placeholder is in its place until all the carousel
     // setup is executed. the placeholder is hidden first then the carousel is revealed
     import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from 'embla-carousel';
-
+    // loop: true
     const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true};
     const viewportNode = document.querySelector('.embla__viewport') as HTMLElement;
     const emblaApi = EmblaCarousel(viewportNode, OPTIONS);

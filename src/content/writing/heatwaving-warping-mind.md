@@ -3,7 +3,8 @@ title: "The troubling ways a heatwave can warp your mind"
 description: "A bit of sunshine can cause many of us to dream of ice cream, sunbathing and beaches, but warm weather can also make us violent, grumpy and depressed. Why?"
 pubDate: 'July 3, 2002'
 updatedDate: 'July 3, 2002'
-heroImage: "japanese-city.webp"
+# heroImage: "/src/assets/article-placeholders/japanese-city.webp"
+heroImage: "/src/assets/article-placeholders/japanese-city.jpg"
 alt: "smthing 'posed to be here"
 tags:
     - "JS"

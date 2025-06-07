@@ -5,7 +5,8 @@ description: 'This description is for ensuring that content is properly truncate
     the user that content has been cut off'
 updatedDate: 'July 3, 2002'
 pubDate: 'July 3, 2002'
-heroImage: 'kon.webp'
+# heroImage: 'kon.webp'
+heroImage: "/src/assets/article-placeholders/kon.jpg"
 alt: "bruh"
 tags: 
     - "JS"

@@ -3,7 +3,8 @@ title: "Title 1"
 description: "description 1" 
 pubDate: 'July 3, 2002'
 updatedDate: 'July 3, 2002'
-heroImage: "snowy-jap-wp.webp"
+# heroImage: "/src/assets/article-placeholders/snowy-jap-wp.webp"
+heroImage: "/src/assets/article-placeholders/snowy-jap-wp.jpg"
 alt: "smthing 'posed to be here"
 tags: 
     - "JS"

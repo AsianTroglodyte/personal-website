@@ -5,7 +5,7 @@ description: "This description is for ensuring that content is properly truncate
     the user that content has been cut off"
 pubDate: "July 12, 2016"
 updatedDate: "March 6, 2019"
-heroImage: "lisa-wp-edit.webp" 
+heroImage: "/src/assets/article-placeholders/lisa-wp-edit.jpg" 
 alt: "smthing 'posed to be here"
 tags: 
     - "JS"

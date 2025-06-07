@@ -4,46 +4,120 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import { type ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';	
+import Tag from '../components/Tag.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'portfolio'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, alt} = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, alt, tags, isFeatured} = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/article-placeholders/*.{jpeg,jpg,png,gif,webp}')
+
+// console.log(tags);
+
+if (!images[`${heroImage}`]) throw new Error(`"${heroImage}" does not exist in glob: "/src/assets/article-placeholders/*.{jpeg,jpg,png,gif,webp}"`);
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=fallback" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=fallback" rel="stylesheet">
 	</head>
 
-	<body >
+	<body class="w-full">
 		<Header isLandingPage = {false} color="PWBlack" BGColor="PWWhite"/>
-		<img width={1020} height={510} src={`${heroImage}`} alt={`${alt}`}>
+		<!-- <img width={1020} height={510} src={`${heroImage}`} alt={`${alt}`}> -->
 
-		</img>
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt={`${alt}`} />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
+		<main class="flex flex-col items-center justify-center relative bg-PWWhite w-full">
+			<!-- might have to make an wrapper But don't have a great reason fro it at this point? -->
+			<!-- <section class="hero-image w-full h-[calc(90vh-80px)] overflow-hidden">  bottom-0  -->
+			<section class="relative w-full h-[calc(70vh-80px)] overflow-hidden z-20 border-t-[2px]">
+				{heroImage && <Image class="w-full fixed top-0 object-center object-cover h-[calc(70vh-80px)] z-10"  
+				src={images[heroImage]()} alt={`${alt}`} />}
+			</section>
+			<div class="relative w-full flex items-center justify-center bg-PWWhite z-30 border-t-[2px] border-solid border-PWBlack">
+				<!--the grid col size is only relevant at specific breakpoint-->
+				<article class="relative bg-PWWhite max-w-7xl gap-5 pt-5 grid z-50
+				grid-cols-[0rem_1fr_0rem] px-[1rem]
+				txt-body-sm:grid-cols-[0rem_1fr_15rem] txt-body-sm:px-[1rem]
+				txt-body-md:grid-cols-[15rem_1fr_15rem] txt-body-md:px-[1.5rem]
+				txt-body-lg:grid-cols-[20.5rem_1fr_15.5rem] txt-body-lg:px-[3rem]">
+				<!-- </section> -->
+					<h1 class="font-notoSerifDisplay font-bold 
+					col-[1_/_-1] row-[1_/_2]
+					text-2xl
+					txt-body-sm:text-3xl
+					txt-body-md:text-5xl">{title}</h1>
+
+					<hr class="border-[2px] border-solid border-PWBlack  
+					col-[1_/_-1] row-[2_/_3]
+					sm:col-[1_/_-1] sm:row-[2_/_3]"/>
+
+					<div class="flex flex-row items-center justify-between
+					col-[1_/_-1] row-[3_/_4] 
+					sm:row-[3_/_4]">
+						<div class="font-notoSerif flex flex-wrap items-start text-lg flex-row gap-1 ">
 							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
+							tags.map((tagName : string) => 
+								<Tag tagName={tagName}/>
+							)}
 						</div>
-						<h1>{title}</h1>
-						<hr />
+
+						<date class="flex flex-col text-lg font-notoSerif
+						text-right
+						sm:text-right">
+							<div class="last-updated-on">
+								Published: <FormattedDate date={pubDate} />
+							</div>
+							{
+							updatedDate && (
+							<div class="last-updated-on font-notoSerif">
+								Updated: <FormattedDate date={updatedDate} />
+							</div>
+							)
+							}
+						</date>
 					</div>
-					<slot />
-				</div>
-			</article>
+					
+					
+					<!-- description takes width of screen at smallest size -->	
+					<section class="font-notoSerif text-2xl mb-5
+					col-[1_/_-1] row-[4_/_5]
+					txt-body-sm:col-[1_/_-1] txt-body-sm:row-[4_/_5]
+					txt-body-md:col-[1_/_3] txt-body-md:row-[4_/_5] txt-body-md:text-3xl md:">
+						{description}
+					</section>
+					
+					<!-- both lines split and let the page content go between the lines in the grid.
+					when the screen is small enough, the lines join together and content goes down -->
+					<hr class="border-[1px] border-solid border-PWBlack 
+					col-[1_/_4] row-[5_/_6]
+					txt-body-sm:col-[1_/_-1] txt-body-sm:row-[5_/_6]
+					txt-body-md:col-[1_/_2] txt-body-md:row-[5_/_6]"/>
+
+					<hr class="border-[1px] border-solid border-PWBlack 
+					col-[1_/_4] row-[5_/_6]
+					txt-body-sm:col-[1_/_-1] txt-body-sm:row-[5_/_6]
+					txt-body-md:col-[3_/_4] txt-body-md:row-[5_/_6]"/>
+
+					<!-- content take width of screen at smallest size -->
+					<section class="font-notoSerif text-lg
+					col-[1_/_-1] row-[7_/_8]
+					txt-body-sm:col-[1_/_3] txt-body-sm:row-[7_/_8]
+					txt-body-md:col-[2_/_3] txt-body-md:row-[7_/_8]">
+						<slot  />
+					</section>
+
+
+					<div class="flex flex-col items-center justify-center
+					col-[1_/_-1] row-[8_/_9]">
+						<Footer/>
+					</div>
+				</article>
+			</div>
 		</main>
-		<Footer />
 	</body>
 </html>

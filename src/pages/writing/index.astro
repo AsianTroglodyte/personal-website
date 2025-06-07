@@ -15,13 +15,6 @@ const writing : WritingEntry[] = (await getCollection('writing')).sort(
 	(a: WritingEntry, b: WritingEntry) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 
-
-// console.log(await getCollection("writing"));
-// type FeaturedWritingEntry = CollectionEntry<'featured_writing'>;
-// const featuredWriting : FeaturedWritingEntry[] = (await getCollection("featured_writing"));
-// console.log(writing[0]);
-
-// type FeaturedWritingEntry = CollectionEntry<'featured_writing'>;
 const featuredWriting : WritingEntry[] = writing.filter((writingEntry) => writingEntry.data.isFeatured == true);
 
 // for getting date
@@ -43,7 +36,7 @@ const dateRegex = /\d\d\d\d-\d\d-\d\d/g;
         <Header isLandingPage={false} BGColor="PWWhite" color='PWBlack' />
         <main class="flex flex-col items-center justify-center mt-10">
             <!-- text-7xl -->
-            <h1 class="font-notoSerifDisplay text-[clamp(2rem,_20vw,_5rem)] text-6xl font-black text-PWBlack mx-5 text-center">
+            <h1 class="font-notoSerifDisplay text-6xl font-black text-PWBlack mx-5 text-center">
                 Karan Swansi's <span class="text-PWBlue-500">Writings</span>
             </h1>
             <!-- Featured -->
@@ -74,7 +67,8 @@ const dateRegex = /\d\d\d\d-\d\d-\d\d/g;
                 <!-- {console.log(Array.isArray(writing), "bruh2")} -->
                 {writing.map(((articleDatum : WritingEntry) =>
                     // anchor tag is not most accessible, but best that I can do right now
-                    <a href={`/${articleDatum.collection}/${articleDatum.slug}/`} >
+                    <a href={`/${articleDatum.collection}/${articleDatum.slug}/`} 
+                    data-astro-prefetch="hover">
                         <article class="flex flex-row p-2 rounded-xs
                         hover:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] hover:bg-[rgb(0_0_0_/_5%)] duration-200
                         focus-within:shadow-[0_0_0_0.5rem_rgba(0_0_0_/_5%)] focus-within:bg-[rgb(0_0_0_/_5%)]">

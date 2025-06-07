@@ -19,7 +19,8 @@ const isBlack = color === "PWBlack"
 
 <div>
 	<!-- styles for the corresponding classes are kept in the global.css -->
-	<a href={href} rel="prefetch" class:list={[className, { active: isActive }, { isWhite: isWhite}, { isBlack: isBlack}]} {...props}>
+	<a href={href} data-astro-prefetch="load"
+	class:list={[className, { active: isActive }, { isWhite: isWhite}, { isBlack: isBlack}]} {...props}>
 		<slot />
 	</a>
 </div>

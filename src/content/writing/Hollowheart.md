@@ -3,7 +3,8 @@ title: "Porter Robinson - Hollowheart ft. Amy Millan (From the Worlds 10th Anniv
 description: "description 1"
 pubDate: 'July 3, 2002'
 updatedDate: 'July 3, 2002'
-heroImage: "memes-wp-1.webp"
+# heroImage: "/src/assets/article-placeholders/memes-wp-1.webp"
+heroImage: "/src/assets/article-placeholders/memes-wp-1.jpg"
 alt: "smthing 'posed to be here"
 tags: 
     - "JS"

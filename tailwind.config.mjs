@@ -6,6 +6,7 @@ export default {
 			colors: {
 				PWBlack: '#141414',
 				PWWhite: "#fff7f4",
+				PWWhiteTranslucent: "#fff7f490",
 				PWOlive: "#BCCABC",
 				PWRed: {
 					500: "#CE4B6D",
@@ -61,6 +62,10 @@ export default {
 				"txt-body-md": "960px",
 				"txt-body-lg": "1240px",
 				"txt-body-xl": "1500px",
+				"carousel-sm": "1010px",
+				"carousel-md": "960px",
+				"carousel-lg": "1240px",
+				"carousel-xl": "1500px",
 			},
 		},
 	},

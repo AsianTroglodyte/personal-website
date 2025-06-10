@@ -8,9 +8,12 @@ import ArticleCard from "../../components/ArticleCard.astro";
 
 
 type PortfolioEntry = CollectionEntry<"portfolio">;
-const portfolio  : PortfolioEntry[] = await getCollection("portfolio");
+const portfolio  : PortfolioEntry[] = (await getCollection("portfolio")).sort((a, b) => {
+    return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
+});
 
 const featuredPortfolio : PortfolioEntry[] = portfolio.filter((portfolioEntry) => portfolioEntry.data.isFeatured == true);
+
 
 // console.log(featuredPortfolio);
 ---
@@ -66,15 +69,21 @@ const featuredPortfolio : PortfolioEntry[] = portfolio.filter((portfolioEntry) =
 
 
             <!-- portfolio area -->
-            <section class="mt-10 gap-5 mx-4 grid portfolio-area
-                            grid-cols-[repeat(_1,_minmax(_18rem,_30rem))]
-                            lg:grid-cols-[repeat(_4,_minmax(_18rem,_30rem))]
-                            md:grid-cols-[repeat(_3,_minmax(_18rem,_30rem))]
-                            sm:grid-cols-[repeat(_2,_minmax(_18rem,_30rem))]">
-                {portfolio.map((portfolioDatum) => 
-                    <ArticleCard articleDatum={portfolioDatum}/>
-                )}
-            </section>
+            {portfolio ? (
+                <section class="mt-10 gap-5 mx-4 grid portfolio-area
+                                grid-cols-[repeat(_1,_minmax(_18rem,_30rem))]
+                                lg:grid-cols-[repeat(_4,_minmax(_18rem,_30rem))]
+                                md:grid-cols-[repeat(_3,_minmax(_18rem,_30rem))]
+                                sm:grid-cols-[repeat(_2,_minmax(_18rem,_30rem))]">
+                    {portfolio.map((portfolioDatum) => 
+                        <ArticleCard articleDatum={portfolioDatum}/>
+                    )}
+                </section>
+            ) : (
+                <p class="font-notoSerif text-xl font-medium mt-10 text-PWBlack text-center	">
+                    Nothing here yet? Might be an error or I haven't added anything yet.
+                </p>
+            )}
 
         </main>
     </body>

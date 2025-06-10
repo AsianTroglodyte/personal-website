@@ -25,16 +25,15 @@ const conditionalNavClasses = isLandingPage ? " " : " grid grid-cols-2 sm:grid-c
 const conditionalHeaderClasses = isLandingPage ? " absolute right-0 " : " ";
 
 ---
-
+<!-- bg-${BGColor} opacity-55 -->
 <!-- conditionalHeaderClasses is for absolute positioning which conveniently prevents scroll bar on Landing page: duration-300 -->
 <header class={`h-8 font-notoSerif fixed z-50 w-full top-0 text-${color} bg-${BGColor} ${conditionalHeaderClasses}`}>
-	<!-- is there a way to do this without inline styling? -->
-	<nav class={`h-full w-full ${conditionalNavClasses}`}>
-		<!-- removing bg-color for as header handles it + "bg-" + BGColor -->
+	<nav class={`h-full w-full ${conditionalNavClasses}`}
+	style="backdrop-filter: blur(10px);">
 		{!isLandingPage && 
 			<div class={``}>
-				{/* the div is used to provide the background for the logo */}
-				<div class={`absolute bg-PWWhite p-1 round`}>
+
+				<div class={`absolute bg-${BGColor} p-1.5 round`}>
 					<img class={`logo round h-10`} alt="logo" src={logo.src} loading="eager" decoding="sync">
 
 				</div>

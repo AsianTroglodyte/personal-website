@@ -7,47 +7,65 @@ type PorfolioEntry = CollectionEntry<'portfolio'>;
 type FeaturedEntry = PorfolioEntry | WritingEntry
 
 const {carouselData} = Astro.props;
+
 // max length depending 
-const CarouselMaxLength = (((carouselData.length > 1 ? carouselData.length : 2) - 1) * 20).toString() + "rem"; 
+// const CarouselMaxLength = ((( testCarouselData3.length > 1 ?  testCarouselData3.length : 2) - 1) * 20).toString() + "rem";
+const CarouselMaxLength = (carouselData.length * 21).toString() + "rem";
+
+const testCarouselData = [...carouselData];
+// if 
+const buttonHiddenClass = (testCarouselData.length === 1) ? "hidden" : "";
+const centerSingleFeaturedArticleClass = (testCarouselData.length === 1) ? "justify-center content-center" : "";
 ---
 
-<div class="w-full" style={{maxWidth: CarouselMaxLength}}>
+<!-- Why inline style? Tailwind's JIT compiler can only extract statically analyzable classnames during build time -->
+<div class={`w-full `} style={`max-width: ${CarouselMaxLength};`}>
+    {/* the carousel is hidden until the javascript is executed. the placeholder is used to prevent layout shifts */}
+    {/* embla__viewport is the viewport of the carousel, embla__container is the container of the carousel items */}
+    {/* embla__button--prev and embla__button--next are the buttons for previous and next respectively */}
     {/* grid is for overlapping buttons (isLoading? "hidden":)*/}
     <div class={"w-full grid grid-cols-[1fr_1fr] embla hidden"}>
-        <!-- embla part h-42-->
-        <div class="overflow-hidden w-full col-[1_/_3] row-[1_/_2] embla__viewport">
-            <!-- viewport -->
-            <div class="flex mt-5 col-[1_/_4] [&>*]:m-2 embla__container" >
-            <!-- {console.log(Array.isArray(carouselData), "bruh3")} -->
-            {/* using center for the alignment is very weird as it reformatted on screen. align: start is used instead*/
-                carouselData.map((carouselDatum : FeaturedEntry ) =>
-                    <FeaturedArticleCard featuredArticleData={carouselDatum}/>
-                )
+        <!-- embla part h-42 overflow-hidden-->
+        <div class=" w-full col-[1_/_3] row-[1_/_2] overflow-hidden embla__viewport">
+            <!-- viewport carousel-sm:justify-center -->
+            <div class={`flex mt-5 col-[1_/_4] [&>*]:m-2 embla__container ${centerSingleFeaturedArticleClass}`}>
+            <!--  -->
+            {/*using center for the alignment is very weird as it reformatted on screen. align: start is used instead*/
+                (testCarouselData.length > 1) ? (
+                    [...testCarouselData, ...testCarouselData].map((carouselDatum : FeaturedEntry ) =>
+                        <FeaturedArticleCard featuredArticleData={carouselDatum}/>
+                    )
+            ) : (
+                <article class=" flex justify-center content-center">
+                    {/* Thumbnail. h & w need to be full as img is a container for the img. This makes object-cover work grid-cols-[minmax(_18rem,18rem)*/}
+                    {/* title description thingy. Max  _20rem*/}
+                    <FeaturedArticleCard featuredArticleData={testCarouselData[0]}/>
+                </article>
+            )
             }
             </div>
         </div>
         {/* using absolute position is a bit wonky as it will change z-index and thus interactivity
         of the carousel. positioning using flex and margin is required. for SVG, consider changing svg
-        d attribute so that center is not necessary*/}
-        <div class="flex justify-start col-[1_/_2] row-[1_/_2] mb-5">
-            <button class="flex justify-center items-center self-center w-12 h-12 bg-black z-10 ml-5 rounded-full embla__button--prev">
-            <svg width="25px" height="25px" viewBox="0 0 24 24">
-                <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" 
-                stroke="white" fill="white" style={{transform:"scale(-1, 1) translate(-100%, 0px)"}}/>
-                {/* transform="scale(-1 1) translate(-800px 0px)" style={{transform:"scale(-1, 1) translate(-40px, 0px)"}}*/}
-            </svg>
+        d attribute so that center is not necessary */}
+        <div class={`flex justify-start col-[1_/_2] row-[1_/_2] mb-5 ${buttonHiddenClass}`}>
+            <button class="flex justify-center items-center self-center w-12 h-12 bg-black z-10 ml-5 round embla__button--prev">
+                <svg width="25px" height="25px" viewBox="0 0 24 24">
+                    <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" 
+                    stroke="white" fill="white" style={{transform:"scale(-1, 1) translate(-100%, 0px)"}}/>
+                </svg>
             </button>
         </div>
-        <div class="flex justify-end col-[2_/_3] row-[1_/_2] mb-5">
-            <button class="flex justify-center items-center self-center w-12 h-12 bg-black z-10 mr-5 rounded-full embla__button--next">
-            <svg width="25px" height="25px" viewBox="0 0 24 24">
-                <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" stroke="white" fill="white"/>
-            </svg>
+        <div class={`flex justify-end col-[2_/_3] row-[1_/_2] mb-5 ${buttonHiddenClass}`}>
+            <button class="flex justify-center items-center self-center w-12 h-12 bg-black z-10 mr-5 round embla__button--next">
+                <svg width="25px" height="25px" viewBox="0 0 24 24">
+                    <path xmlns="http://www.w3.org/2000/svg" d="M10.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" stroke="white" fill="white"/>
+                </svg>
             </button>
         </div>
     </div>
     <div class={"flex content-align justify-center placeholder"}>
-        <!-- height is must be exactly 38.25 to prevent layout shifts once the carousel is revealed -->
+        <!-- height must be exactly 38.25 to prevent layout shifts once the carousel is revealed -->
         <svg width="250" height="38.25rem" >
             <rect x="5" y="296" width="40" height="80" rx="5" ry="5">
             </rect>
@@ -65,13 +83,14 @@ const CarouselMaxLength = (((carouselData.length > 1 ? carouselData.length : 2) 
     </div>
 </div>
 
+
 <script >
     // NOTE: Below implements the carousel I don't quite understand the javascript code below.
     // the carousel is hidden and a placeholder is in its place until all the carousel
     // setup is executed. the placeholder is hidden first then the carousel is revealed
     import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from 'embla-carousel';
-    // loop: true
-    const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true};
+    // ,
+    const OPTIONS: EmblaOptionsType = {dragFree: true, loop: true};
     const viewportNode = document.querySelector('.embla__viewport') as HTMLElement;
     const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
 
@@ -146,8 +165,16 @@ const CarouselMaxLength = (((carouselData.length > 1 ? carouselData.length : 2) 
     // now that everything is properly formatted, we remove the suspence and reveal the embla node.
     
 
+    function logResize(emblaApi: EmblaCarouselType): void {
+        console.log("embla resized");
+
+        // console.log(emblaApi.reInit());
+        // console.log(emblaApi.scrollSnapList());
+    }
 
 
-    // we need make it so that the  
+
+    // we need make it so that the carousel updates its layout on resize
+    emblaApi.on("resize", () => logResize(emblaApi));
 
 </script>

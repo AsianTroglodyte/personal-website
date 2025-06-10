@@ -15,11 +15,10 @@ if (!images[featuredArticleData.data.heroImage]) throw new Error(`"${featuredArt
     {/* title description thingy. Max  _20rem*/}
     <div class="card grid grid-rows-[minmax(_0rem,_20rem)_minmax(_0rem,_16rem)] grid-cols-[minmax(_20rem,_20rem)] bg-white rounded-md 
     font-notoSerif ">
-        <!-- loading="lazy"
-        decoding="async" -->
         <Image class="object-cover h-full w-full rounded-t-md" 
         alt={featuredArticleData.data.alt} 
-        src={images[featuredArticleData.data.heroImage]()}></Image>
+        src={images[featuredArticleData.data.heroImage]()}
+        loading="eager"></Image>
         <div class="flex flex-col p-4 justify-between">
             <div class="flex flex-col grow gap-3 overflow-hidden">
                 {/* advanced-truncation is for truncating and putting ellipses on overflowing text content. ELLIPSES HANDLED ON global.css

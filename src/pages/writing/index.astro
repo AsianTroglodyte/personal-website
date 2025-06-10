@@ -5,6 +5,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import Carousel from '../../components/Carousel.astro';
 import { type CollectionEntry } from 'astro:content';
+// import { undefined } from 'astro:schema';
 
 // import {type col}
 // import FormattedDate from '../../components/FormattedDate.astro';
@@ -63,6 +64,8 @@ const dateRegex = /\d\d\d\d-\d\d-\d\d/g;
             </input>
 
             <!-- article area  h-full -->
+            <!-- portfolio area -->
+            {writing ? (
             <section class="flex flex-col gap-3 w-fit max-w-[40rem] h-full mx-5 mt-10">
                 <!-- {console.log(Array.isArray(writing), "bruh2")} -->
                 {writing.map(((articleDatum : WritingEntry) =>
@@ -83,12 +86,16 @@ const dateRegex = /\d\d\d\d-\d\d-\d\d/g;
                                 <h6 class="font-notoSerif advanced-truncation-1 title-text text-base font-bold min-w-[10rem]">
                                     {articleDatum.data.title}
                                 </h6>
-                                <p class="font-notoSerif advanced-truncation-1 text-base"> {articleDatum.data.description}</p>
                             </div>
                         </article>
                     </a>
                 ))}
             </section>
+            ) : (
+            <p class="font-notoSerif text-xl font-medium mt-10 text-PWBlack text-center	">
+                Nothing here yet? Might be an error or I haven't added anything yet.
+            </p>
+            )}
         </main>
     </body>
 </html>

@@ -13,7 +13,6 @@ type Props = CollectionEntry<'portfolio'>['data'];
 const { title, description, pubDate, updatedDate, heroImage, alt, tags, isFeatured} = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/article-placeholders/*.{jpeg,jpg,png,gif,webp}')
 
-// console.log(tags);
 
 if (!images[`${heroImage}`]) throw new Error(`"${heroImage}" does not exist in glob: "/src/assets/article-placeholders/*.{jpeg,jpg,png,gif,webp}"`);
 ---
@@ -27,18 +26,16 @@ if (!images[`${heroImage}`]) throw new Error(`"${heroImage}" does not exist in g
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=fallback" rel="stylesheet">
 	</head>
 
-	<body class="w-full">
+	<body class="w-full ">
 		<Header isLandingPage = {false} color="PWBlack" BGColor="PWWhite"/>
-		<!-- <img width={1020} height={510} src={`${heroImage}`} alt={`${alt}`}> -->
-
 		<main class="flex flex-col items-center justify-center relative bg-PWWhite w-full">
-			<!-- might have to make an wrapper But don't have a great reason fro it at this point? -->
-			<!-- <section class="hero-image w-full h-[calc(90vh-80px)] overflow-hidden">  bottom-0  -->
+			<!-- might have to make wrapper But don't have a great reason for it at this point? -->
 			<section class="relative w-full h-[calc(70vh-80px)] overflow-hidden z-20 border-t-[2px]">
 				{heroImage && <Image class="w-full fixed top-0 object-center object-cover h-[calc(70vh-80px)] z-10"  
-				src={images[heroImage]()} alt={`${alt}`} />}
+				src={images[heroImage]()} alt={`${alt}`} loading="eager"/>}
 			</section>
-			<div class="relative w-full flex items-center justify-center bg-PWWhite z-30 border-t-[2px] border-solid border-PWBlack">
+			<!-- maybe add a border to the top "border-t-2 border-black border-solid" -->
+			<div class="relative w-full flex items-center justify-center bg-PWWhite z-30 ">
 				<!--the grid col size is only relevant at specific breakpoint-->
 				<article class="relative bg-PWWhite max-w-7xl gap-5 pt-5 grid z-50
 				grid-cols-[0rem_1fr_0rem] px-[1rem]
@@ -105,15 +102,15 @@ if (!images[`${heroImage}`]) throw new Error(`"${heroImage}" does not exist in g
 
 					<!-- content take width of screen at smallest size -->
 					<section class="font-notoSerif text-lg
-					col-[1_/_-1] row-[7_/_8]
-					txt-body-sm:col-[1_/_3] txt-body-sm:row-[7_/_8]
-					txt-body-md:col-[2_/_3] txt-body-md:row-[7_/_8]">
+					col-[1_/_-1] row-[6_/_7]
+					txt-body-sm:col-[1_/_3] txt-body-sm:row-[6_/_7]
+					txt-body-md:col-[2_/_3] txt-body-md:row-[5_/_6]">
 						<slot  />
 					</section>
 
 
 					<div class="flex flex-col items-center justify-center
-					col-[1_/_-1] row-[8_/_9]">
+					col-[1_/_-1] row-[7_/_8]">
 						<Footer/>
 					</div>
 				</article>

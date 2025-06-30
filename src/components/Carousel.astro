@@ -9,7 +9,6 @@ type FeaturedEntry = PorfolioEntry | WritingEntry
 const {carouselData} = Astro.props;
 
 // max length depending 
-// const CarouselMaxLength = ((( testCarouselData3.length > 1 ?  testCarouselData3.length : 2) - 1) * 20).toString() + "rem";
 const CarouselMaxLength = (carouselData.length * 21).toString() + "rem";
 
 const testCarouselData = [...carouselData];
@@ -90,7 +89,7 @@ const centerSingleFeaturedArticleClass = (testCarouselData.length === 1) ? "just
     // setup is executed. the placeholder is hidden first then the carousel is revealed
     import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from 'embla-carousel';
     // ,
-    const OPTIONS: EmblaOptionsType = {dragFree: true, loop: true};
+    const OPTIONS: EmblaOptionsType = {dragFree: true, loop: true, duration: 10};
     const viewportNode = document.querySelector('.embla__viewport') as HTMLElement;
     const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
 
@@ -99,82 +98,18 @@ const centerSingleFeaturedArticleClass = (testCarouselData.length === 1) ? "just
     const emblaNode = document.querySelector('.embla') as HTMLElement;
     emblaNode.classList.remove("hidden")
     
-    const addTogglePrevNextBtnsActive = (
-        emblaApi : EmblaCarouselType, 
-        prevBtn: HTMLElement, 
-        nextBtn: HTMLElement): (() => void) => {
-            const togglePrevNextBtnsState = () => {
-                if (emblaApi.canScrollPrev()) prevBtn.removeAttribute('disabled');
-                else prevBtn.setAttribute('disabled', 'disabled');
-
-                if (emblaApi.canScrollNext()) nextBtn.removeAttribute('disabled');
-                else nextBtn.setAttribute('disabled', 'disabled');
-            }
-
-            emblaApi
-                .on('select', togglePrevNextBtnsState)
-                .on('init', togglePrevNextBtnsState)
-                .on('reInit', togglePrevNextBtnsState)
-
-            return () => {
-                prevBtn.removeAttribute('disabled');
-                nextBtn.removeAttribute('disabled');
-            }
-        }
-
-    const addPrevNextBtnsClickHandlers = (
-        emblaApi:EmblaCarouselType, 
-        prevBtn:HTMLElement, 
-        nextBtn:HTMLElement): (() => void) => {
-        const scrollPrev = (): void =>  {
-            emblaApi.scrollPrev();
-        }
-
-        const scrollNext = (): void =>  {
-            emblaApi.scrollNext();
-        }
-
-        prevBtn.addEventListener('click', scrollPrev, false);
-        nextBtn.addEventListener('click', scrollNext, false);
-
-        const removeTogglePrevNextBtnsActive = addTogglePrevNextBtnsActive(
-            emblaApi,
-            prevBtn,
-            nextBtn
-        )
-
-        return (): void => {
-            removeTogglePrevNextBtnsActive();
-            prevBtn.removeEventListener('click', scrollPrev, false);
-            nextBtn.removeEventListener('click', scrollNext, false);
-        }
-    }
-    
-    
-    const prevBtnNode = document.querySelector('.embla__button--prev') as HTMLElement;
-    const nextBtnNode = document.querySelector('.embla__button--next') as HTMLElement;
-    
-
-    const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
-    emblaApi,
-    prevBtnNode,
-    nextBtnNode
-    )
-
-    emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
-    // now that everything is properly formatted, we remove the suspence and reveal the embla node.
-    
-
-    function logResize(emblaApi: EmblaCarouselType): void {
-        console.log("embla resized");
-
-        // console.log(emblaApi.reInit());
-        // console.log(emblaApi.scrollSnapList());
+    const scrollPrev = (): void =>  {
+        emblaApi.scrollPrev();
     }
 
+    const scrollNext = (): void =>  {
+        emblaApi.scrollNext();
+    }
 
-
-    // we need make it so that the carousel updates its layout on resize
-    emblaApi.on("resize", () => logResize(emblaApi));
+    let prevBtnNode = document.querySelector('.embla__button--prev') as HTMLElement;
+    prevBtnNode.addEventListener('click', scrollPrev, false);
+    
+    let nextBtnNode = document.querySelector('.embla__button--next') as HTMLElement;
+    nextBtnNode.addEventListener('click', scrollNext, false);
 
 </script>

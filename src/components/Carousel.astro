@@ -101,15 +101,14 @@ const centerSingleFeaturedArticleClass = (testCarouselData.length === 1) ? "just
     const scrollPrev = (): void =>  {
         emblaApi.scrollPrev();
     }
+    let prevBtnNode = document.querySelector('.embla__button--prev') as HTMLElement;
+    prevBtnNode.addEventListener('click', scrollPrev, false);
 
     const scrollNext = (): void =>  {
         emblaApi.scrollNext();
     }
-
-    let prevBtnNode = document.querySelector('.embla__button--prev') as HTMLElement;
-    prevBtnNode.addEventListener('click', scrollPrev, false);
-    
     let nextBtnNode = document.querySelector('.embla__button--next') as HTMLElement;
     nextBtnNode.addEventListener('click', scrollNext, false);
+    
 
 </script>

@@ -6,7 +6,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://asiantroglodyte.com',
   output: 'static',
   integrations: [mdx(), sitemap(), react(), tailwind()],
   // not actually prefetching all pages, astro is not generating the runtime script for injecting prefetch links

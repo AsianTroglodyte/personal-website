@@ -114,14 +114,14 @@ const conditionalHeaderClasses = isLandingPage ? " absolute right-0 " : " ";
 		// if we scroll up then the header must go down
 		else {
 			// we take current top positioning and minus it by how much we scrolled. 
-			// danger of header being too high. So, we check if the new possible pos will be farther up than top:-50px
-			// if it is then we just set the top directly to -50px to prevent the pos from going to high up 
-			if (-50 < (headerTopPosNum - (currentScrollPos - prevScrollPos)))
+			// danger of header being too high. So, we check if the new possible pos will be farther up than top:-55px
+			// if it is then we just set the top directly to -55px to prevent the pos from going to high up
+			if (-55 < (headerTopPosNum - (currentScrollPos - prevScrollPos)))
 			{
 				header.style.top = `${(headerTopPosNum - (currentScrollPos - prevScrollPos))}px`;
 			}
 			else {
-				header.style.top = "-50px"
+				header.style.top = "-55px"
 			}
 		}
 		// when the scroll event fires again in the future our currentScrollPos will, of course, be our prevous scroll position

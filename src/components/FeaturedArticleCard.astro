@@ -10,7 +10,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/article
 if (!images[featuredArticleData.data.heroImage]) throw new Error(`"${featuredArticleData.data.heroImage}" does not exist in glob: "/src/assets/article-placeholders/*.{jpeg,jpg,png,gif,webp}"`);
 ---
 <!-- using relative for pseudo content trick here: -->
-<article class="flex relative justify-center content-center h-[clamp(22rem,80vh,36rem)]">
+<article class="flex relative justify-center content-center h-[clamp(22rem,80lvh,36rem)]">
     {/* Thumbnail. h & w need to be full as img is a container for the img. This makes object-cover work grid-cols-[minmax(_18rem,18rem)*/}
     {/* title description thingy. Max  _20rem*/}
     <div class="card grid grid-rows-[minmax(_0rem,_20rem)_minmax(_0rem,_16rem)] grid-cols-[minmax(_20rem,_20rem)] bg-white rounded-md 

@@ -48,7 +48,11 @@
 	--font-weight-normal: 400;
 	--font-weight-light: 300;
 	--font-weight-extralight: 200;
-}	
+}
+
+.embla__container {
+	will-change: transform;
+}
 
 .title-text {
 	display: -webkit-box;
